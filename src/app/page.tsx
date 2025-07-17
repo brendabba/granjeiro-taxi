@@ -161,38 +161,7 @@ export default function HomePage() {
 				</div>
 			</section>
 
-			{/* Teste de Imagens */}
-			<section className="py-10 bg-white">
-				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-					<h2 className="text-center text-2xl font-bold mb-8 text-gray-900">🖼️ Teste de Imagens</h2>
-					<div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-						<div className="bg-gray-100 p-4 rounded-lg">
-							<h3 className="font-semibold mb-2">Trancoso</h3>
-							<img
-								src="/images/destinations/trancoso-quadrado.jpg"
-								alt="Trancoso"
-								className="w-full h-48 object-cover rounded"
-							/>
-						</div>
-						<div className="bg-gray-100 p-4 rounded-lg">
-							<h3 className="font-semibold mb-2">Arraial d&apos;Ajuda</h3>
-							<img
-								src="/images/destinations/arraial-ajuda-praia.jpg"
-								alt="Arraial d'Ajuda"
-								className="w-full h-48 object-cover rounded"
-							/>
-						</div>
-						<div className="bg-gray-100 p-4 rounded-lg">
-							<h3 className="font-semibold mb-2">Caraíva</h3>
-							<img
-								src="/images/destinations/caraiva-vila.jpg"
-								alt="Caraíva"
-								className="w-full h-48 object-cover rounded"
-							/>
-						</div>
-					</div>
-				</div>
-			</section>
+
 
 			{/* Popular Routes Section */}
 			<section className="py-20">
