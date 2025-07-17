@@ -38,11 +38,11 @@ export function Header() {
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 				<div className="flex items-center justify-between h-16">
 					{/* Logo */}
-					<div className="flex-shrink-0">
-						<Link href="/" className="flex items-center space-x-2">
-							<div className="w-10 h-10 bg-gradient-to-r from-orange-500 to-orange-600 rounded-lg flex items-center justify-center">
-								<span className="text-white font-bold text-lg">TG</span>
-							</div>
+											<div className="flex-shrink-0">
+							<Link href="/" className="flex items-center space-x-2">
+								<div className="w-10 h-10 bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-lg flex items-center justify-center">
+									<span className="text-black font-bold text-lg">TG</span>
+								</div>
 							<span className="font-poppins font-bold text-xl text-gray-900">
 								Táxi Granjeiro
 							</span>
@@ -55,7 +55,7 @@ export function Header() {
 							<button
 								key={item.name}
 								onClick={() => handleNavClick(item.href)}
-								className="text-gray-700 hover:text-orange-600 font-medium transition-colors duration-200"
+								className="text-gray-700 hover:text-yellow-600 font-medium transition-colors duration-200"
 							>
 								{item.name}
 							</button>
@@ -66,7 +66,7 @@ export function Header() {
 					<div className="hidden md:flex items-center space-x-4">
 						<Button
 							onClick={handleWhatsAppClick}
-							className="bg-orange-600 hover:bg-orange-700 text-white font-medium px-6 py-2 rounded-lg transition-colors duration-200"
+							className="bg-yellow-500 hover:bg-yellow-600 text-black font-medium px-6 py-2 rounded-lg transition-colors duration-200"
 						>
 							<Phone className="w-4 h-4 mr-2" />
 							Agendar Viagem
@@ -77,7 +77,7 @@ export function Header() {
 					<div className="md:hidden">
 						<button
 							onClick={() => setIsMenuOpen(!isMenuOpen)}
-							className="text-gray-700 hover:text-orange-600 focus:outline-none focus:text-orange-600"
+							className="text-gray-700 hover:text-yellow-600 focus:outline-none focus:text-yellow-600"
 						>
 							{isMenuOpen ? (
 								<X className="w-6 h-6" />
@@ -96,7 +96,7 @@ export function Header() {
 								<button
 									key={item.name}
 									onClick={() => handleNavClick(item.href)}
-									className="block w-full text-left px-3 py-2 text-gray-700 hover:text-orange-600 font-medium transition-colors duration-200"
+									className="block w-full text-left px-3 py-2 text-gray-700 hover:text-yellow-600 font-medium transition-colors duration-200"
 								>
 									{item.name}
 								</button>
@@ -104,7 +104,7 @@ export function Header() {
 							<div className="pt-4">
 								<Button
 									onClick={handleWhatsAppClick}
-									className="w-full bg-orange-600 hover:bg-orange-700 text-white font-medium py-2 rounded-lg transition-colors duration-200"
+									className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-medium py-2 rounded-lg transition-colors duration-200"
 								>
 									<Phone className="w-4 h-4 mr-2" />
 									Agendar Viagem

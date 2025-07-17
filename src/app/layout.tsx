@@ -22,16 +22,16 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-	title: 'Táxi Granjeiro - Transfer Seguro em Porto Seguro, Trancoso e Arraial',
-	description: 'Transfer seguro e pontual em Porto Seguro, Trancoso, Arraial d\'Ajuda e Caraíva. Motoristas experientes, preços transparentes. Agende sua viagem agora!',
-	keywords: ['taxi porto seguro', 'transfer trancoso', 'taxi arraial ajuda', 'transfer aeroporto', 'taxi caraiva', 'transfer bahia'],
+	title: 'Táxi Granjeiro - Táxi 24h • Transfer • Passeios em Porto Seguro',
+	description: 'Táxi 24 horas, transfer seguro e passeios turísticos em Porto Seguro, Trancoso, Arraial d\'Ajuda e Caraíva. Motoristas experientes, serviço completo. Agende agora!',
+	keywords: ['taxi 24h porto seguro', 'transfer trancoso', 'passeios porto seguro', 'taxi arraial ajuda', 'transfer aeroporto', 'city tour bahia', 'viagem costa descobrimento'],
 	authors: [{ name: 'Táxi Granjeiro' }],
 	creator: 'Táxi Granjeiro',
 	publisher: 'Táxi Granjeiro',
 	robots: 'index, follow',
 	openGraph: {
-		title: 'Táxi Granjeiro - Transfer Seguro em Porto Seguro',
-		description: 'Transfer seguro e pontual em Porto Seguro, Trancoso, Arraial d\'Ajuda e Caraíva',
+		title: 'Táxi Granjeiro - Táxi 24h • Transfer • Passeios',
+		description: 'Táxi 24 horas, transfer seguro e passeios turísticos em Porto Seguro, Trancoso, Arraial d\'Ajuda e Caraíva',
 		url: 'https://taxigranjeiro.com.br',
 		siteName: 'Táxi Granjeiro',
 		locale: 'pt_BR',
@@ -39,8 +39,8 @@ export const metadata: Metadata = {
 	},
 	twitter: {
 		card: 'summary_large_image',
-		title: 'Táxi Granjeiro - Transfer Seguro em Porto Seguro',
-		description: 'Transfer seguro e pontual em Porto Seguro, Trancoso, Arraial d\'Ajuda e Caraíva',
+		title: 'Táxi Granjeiro - Táxi 24h • Transfer • Passeios',
+		description: 'Táxi 24 horas, transfer seguro e passeios turísticos em Porto Seguro, Trancoso, Arraial d\'Ajuda e Caraíva',
 	},
 
 }
@@ -60,7 +60,7 @@ export default function RootLayout({
 		<html lang="pt-BR">
 			<head>
 				<link rel="manifest" href="/manifest.json" />
-				<meta name="theme-color" content="#FF6B35" />
+				<meta name="theme-color" content="#fbbf24" />
 				<link rel="apple-touch-icon" href="/icon.svg" />
 				<link rel="preconnect" href="https://fonts.googleapis.com" />
 				<link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

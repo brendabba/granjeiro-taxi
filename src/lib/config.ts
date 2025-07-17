@@ -19,7 +19,7 @@ export const config = {
 	site: {
 		url: process.env.NEXT_PUBLIC_SITE_URL || 'https://taxigranjeiro.com.br',
 		name: process.env.NEXT_PUBLIC_SITE_NAME || 'Táxi Granjeiro',
-		description: 'Transfer e taxi em Porto Seguro, Trancoso, Arraial d\'Ajuda e Caraíva'
+		description: 'Táxi 24h, transfer seguro e passeios turísticos em Porto Seguro, Trancoso, Arraial d\'Ajuda e Caraíva'
 	},
 
 	// Google Analytics

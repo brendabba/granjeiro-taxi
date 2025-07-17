@@ -59,24 +59,24 @@ export default function HomePage() {
 
 	const benefits = [
 		{
-			icon: Shield,
-			title: 'Segurança Garantida',
-			description: 'Motoristas experientes, Chevrolet Spin com seguro total e monitoramento 24h'
+			icon: Clock,
+			title: 'Táxi 24 Horas',
+			description: 'Disponível 24h por dia, 7 dias por semana para todas suas necessidades'
 		},
 		{
-			icon: Clock,
-			title: 'Pontualidade',
-			description: 'Nunca perca seu voo. Horários rigorosamente cumpridos'
+			icon: Shield,
+			title: 'Transfer Seguro',
+			description: 'Motoristas experientes, Chevrolet Spin com seguro total e monitoramento'
 		},
 		{
 			icon: Star,
-			title: 'Nota 4.9/5',
-			description: 'Mais de 2.000 avaliações positivas no Google'
+			title: 'Passeios Personalizados',
+			description: 'City tours e passeios sob medida pelos destinos mais belos da região'
 		},
 		{
 			icon: Car,
-			title: 'Frota Chevrolet Spin',
-			description: 'Veículos modernos para até 6 passageiros com todo conforto'
+			title: 'Viagens Confortáveis',
+			description: 'Frota Chevrolet Spin moderna para até 6 passageiros com ar condicionado'
 		}
 	]
 
@@ -109,28 +109,28 @@ export default function HomePage() {
 
 	const services = [
 		{
+			icon: Clock,
+			title: 'Táxi 24 Horas',
+			description: 'Serviço de táxi disponível 24h por dia, 7 dias por semana',
+			features: ['Disponível 24h/7d', 'Atendimento imediato', 'Corridas urbanas']
+		},
+		{
 			icon: MapPin,
 			title: 'Transfer Aeroporto',
-			description: 'Busca e entrega no aeroporto com monitoramento de voos',
+			description: 'Transfer seguro entre aeroporto e destinos turísticos',
 			features: ['Monitoramento de voos', 'Espera gratuita', 'Transfer direto']
 		},
 		{
-			icon: Calendar,
-			title: 'Transfers Programados',
-			description: 'Agende seu transfer com antecedência',
-			features: ['Agendamento flexível', 'Confirmação por WhatsApp', 'Lembrete automático']
-		},
-		{
-			icon: Users,
-			title: 'Grupos e Famílias',
-			description: 'Transporte para grupos de até 6 pessoas',
-			features: ['Chevrolet Spin', 'Ar condicionado', 'Espaço para bagagens']
-		},
-		{
 			icon: Star,
-			title: 'City Tour',
-			description: 'Conheça os pontos turísticos da região',
-			features: ['Guia local', 'Roteiros personalizados', 'Paradas fotográficas']
+			title: 'Passeios Turísticos',
+			description: 'City tours e passeios personalizados pela região',
+			features: ['Guia local especializado', 'Roteiros sob medida', 'Paradas fotográficas']
+		},
+		{
+			icon: Car,
+			title: 'Viagens Personalizadas',
+			description: 'Viagens de longa distância e roteiros especiais',
+			features: ['Múltiplos destinos', 'Flexibilidade total', 'Conforto garantido']
 		}
 	]
 
@@ -145,24 +145,24 @@ export default function HomePage() {
 
 	const aboutFeatures = [
 		{
+			icon: Clock,
+			title: 'Táxi 24 Horas Disponível',
+			description: 'Serviço de táxi disponível 24h por dia, 7 dias por semana'
+		},
+		{
 			icon: Award,
 			title: '8+ Anos de Experiência',
-			description: 'Mais de 8 anos atendendo turistas na Costa do Descobrimento'
+			description: 'Especialistas em transfer, passeios e turismo na região'
 		},
 		{
 			icon: Car,
-			title: 'Frota Moderna',
-			description: 'Chevrolet Spin 2020+ com ar condicionado e seguro total'
-		},
-		{
-			icon: Zap,
-			title: 'Atendimento 24h',
-			description: 'Disponível 24 horas para transfers de aeroporto'
+			title: 'Frota Chevrolet Spin',
+			description: 'Veículos modernos, climatizados e com seguro total'
 		},
 		{
 			icon: HeadphonesIcon,
-			title: 'Suporte Local',
-			description: 'Equipe local que conhece todos os destinos da região'
+			title: 'Guias Locais Experientes',
+			description: 'Conhecemos cada canto da Costa do Descobrimento'
 		}
 	]
 
@@ -232,18 +232,18 @@ _Aguardo seu orçamento! 😊_
 					<div className="grid lg:grid-cols-2 gap-12 items-center">
 						<div className="text-center lg:text-left">
 							<h1 className="font-poppins font-bold text-4xl md:text-5xl lg:text-6xl leading-tight mb-6">
-								Transfer Seguro e Pontual em{' '}
+								Táxi 24h • Transfer • Passeios em{' '}
 								<span className="text-yellow-300">Porto Seguro</span>
 							</h1>
 							<p className="text-xl md:text-2xl text-gray-100 mb-8 leading-relaxed">
-								Conectamos você aos destinos mais incríveis da{' '}
-								<span className="font-semibold text-yellow-200">Costa do Descobrimento</span>{' '}
-								com segurança, pontualidade e preços justos.
+								<span className="font-bold text-yellow-300">Táxi 24 horas</span>, transfers seguros e{' '}
+								<span className="font-semibold text-yellow-200">passeios personalizados</span>{' '}
+								pela Costa do Descobrimento. Sua viagem com total comodidade!
 							</p>
 							<div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
 								<Button
 									onClick={() => document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })}
-									className="bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-white font-semibold px-8 py-4 text-lg transition-all duration-300 transform hover:scale-105"
+									className="bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-black font-semibold px-8 py-4 text-lg transition-all duration-300 transform hover:scale-105"
 								>
 									<Calendar className="w-5 h-5 mr-3" />
 									Solicitar Transfer
@@ -279,10 +279,11 @@ _Aguardo seu orçamento! 😊_
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<div className="text-center mb-16">
 						<h2 className="font-poppins font-bold text-3xl md:text-4xl text-gray-900 mb-4">
-							Rotas Mais Populares
+							🚖 Transfer • Táxi • Passeios
 						</h2>
 						<p className="text-xl text-gray-600">
-							Conectamos você aos destinos mais procurados da região com nosso Chevrolet Spin
+							<span className="font-semibold text-yellow-600">Táxi 24h</span>, transfers e passeios personalizados 
+							para os destinos mais procurados da Costa do Descobrimento
 						</p>
 					</div>
 
@@ -318,7 +319,7 @@ _Aguardo seu orçamento! 😊_
 											fillRoute(route.from, route.to)
 											document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })
 										}}
-										className="w-full bg-orange-600 hover:bg-orange-700 text-white"
+										className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-semibold"
 									>
 										Solicitar Orçamento
 									</Button>
@@ -334,10 +335,11 @@ _Aguardo seu orçamento! 😊_
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<div className="text-center mb-16">
 						<h2 className="font-poppins font-bold text-3xl md:text-4xl text-gray-900 mb-4">
-							Nossos Serviços
+							🌟 Táxi 24h • Transfer • Passeios • Viagens
 						</h2>
 						<p className="text-xl text-gray-600">
-							Oferecemos soluções completas de transporte para sua viagem
+							<span className="font-bold text-yellow-600">Serviço completo 24 horas:</span> táxi urbano, 
+							transfers aeroporto, passeios turísticos e viagens personalizadas
 						</p>
 					</div>
 
@@ -345,13 +347,13 @@ _Aguardo seu orçamento! 😊_
 						{services.map((service, index) => (
 							<Card key={index} className="text-center hover:shadow-lg transition-shadow duration-300">
 								<CardContent className="p-8">
-									<service.icon className="w-12 h-12 text-orange-600 mx-auto mb-4" />
+									<service.icon className="w-12 h-12 text-yellow-600 mx-auto mb-4" />
 									<h3 className="font-bold text-xl mb-3">{service.title}</h3>
 									<p className="text-gray-600 mb-4">{service.description}</p>
 									<ul className="text-sm text-gray-500 space-y-1">
 										{service.features.map((feature, idx) => (
 											<li key={idx} className="flex items-center justify-center">
-												<CheckCircle className="w-4 h-4 text-green-500 mr-2" />
+												<CheckCircle className="w-4 h-4 text-yellow-600 mr-2" />
 												{feature}
 											</li>
 										))}
@@ -369,17 +371,17 @@ _Aguardo seu orçamento! 😊_
 					<div className="grid lg:grid-cols-2 gap-12 items-center">
 						<div>
 							<h2 className="font-poppins font-bold text-3xl md:text-4xl text-gray-900 mb-6">
-								Por que escolher nosso transfer?
+								🚖 Por que escolher a Táxi Granjeiro?
 							</h2>
 							<p className="text-xl text-gray-600 mb-8">
-								Somos uma empresa local especializada em transfer e turismo na Costa do Descobrimento. 
-								Nossa missão é proporcionar viagens seguras, confortáveis e inesquecíveis.
+								<span className="font-bold text-yellow-600">Táxi 24 horas</span>, empresa local especializada em 
+								transfer, passeios e turismo na Costa do Descobrimento. Sua viagem com total segurança e comodidade!
 							</p>
 							
 							<div className="space-y-6">
 								{aboutFeatures.map((feature, index) => (
 									<div key={index} className="flex items-start">
-										<feature.icon className="w-8 h-8 text-orange-600 mt-1 mr-4" />
+										<feature.icon className="w-8 h-8 text-yellow-600 mt-1 mr-4" />
 										<div>
 											<h3 className="font-semibold text-lg text-gray-900 mb-1">{feature.title}</h3>
 											<p className="text-gray-600">{feature.description}</p>
@@ -410,35 +412,36 @@ _Aguardo seu orçamento! 😊_
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<div className="text-center mb-16">
 						<h2 className="font-poppins font-bold text-3xl md:text-4xl text-gray-900 mb-4">
-							Solicite seu Transfer
+							🚖 Solicite: Táxi • Transfer • Passeio • Viagem
 						</h2>
 						<p className="text-xl text-gray-600">
-							Preencha o formulário e seja redirecionado para o WhatsApp com sua solicitação organizada
+							<span className="font-semibold text-yellow-600">Serviço 24 horas:</span> Preencha o formulário 
+							e seja redirecionado para o WhatsApp com sua solicitação organizada
 						</p>
 					</div>
 
 					<div className="max-w-4xl mx-auto">
 						<Card className="shadow-xl">
-							<CardHeader className="bg-gradient-to-r from-orange-600 to-orange-500 text-white">
+							<CardHeader className="bg-gradient-to-r from-yellow-500 to-yellow-600 text-black">
 								<CardTitle className="text-2xl flex items-center justify-center">
 									<MessageSquare className="w-6 h-6 mr-3" />
 									Formulário de Solicitação
 								</CardTitle>
-								<p className="text-orange-100 text-center">
-									Preencha os dados e seja redirecionado para o WhatsApp
+								<p className="text-yellow-900 text-center font-medium">
+									Táxi 24h • Transfer • Passeios • Viagens - Preencha e seja redirecionado ao WhatsApp
 								</p>
 							</CardHeader>
 							<CardContent className="p-8">
 								{/* Rotas Populares */}
-								<div className="bg-orange-50 p-6 rounded-lg mb-8">
-									<h3 className="font-semibold text-gray-800 mb-4 text-center">🔥 Rotas Populares (clique para preencher):</h3>
+								<div className="bg-yellow-50 p-6 rounded-lg mb-8">
+									<h3 className="font-semibold text-gray-800 mb-4 text-center">🚖 Rotas Populares - Táxi/Transfer/Passeio (clique para preencher):</h3>
 									<div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
 										{popularRoutes.map((route, index) => (
 											<button
 												key={index}
 												type="button"
 												onClick={() => fillRoute(route.from, route.to)}
-												className="text-left text-sm bg-white p-3 rounded border hover:bg-orange-100 hover:border-orange-400 transition-colors"
+												className="text-left text-sm bg-white p-3 rounded border hover:bg-yellow-100 hover:border-yellow-500 transition-colors"
 											>
 												{route.from} → {route.to}
 											</button>
@@ -604,12 +607,12 @@ _Aguardo seu orçamento! 😊_
 									</Button>
 
 									{/* Aviso */}
-									<div className="bg-green-50 border border-green-200 rounded-lg p-4">
+									<div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
 										<div className="flex items-start">
-											<CheckCircle className="w-5 h-5 text-green-600 mt-0.5 mr-3" />
+											<CheckCircle className="w-5 h-5 text-yellow-600 mt-0.5 mr-3" />
 											<div>
-												<h4 className="font-semibold text-green-800">Como funciona:</h4>
-												<p className="text-green-700 text-sm mt-1">
+												<h4 className="font-semibold text-yellow-800">Como funciona:</h4>
+												<p className="text-yellow-700 text-sm mt-1">
 													Ao clicar em &quot;Enviar via WhatsApp&quot;, você será redirecionado automaticamente 
 													para o WhatsApp com uma mensagem organizada contendo todos os dados preenchidos. 
 													Basta enviar para receber seu orçamento!
@@ -624,13 +627,13 @@ _Aguardo seu orçamento! 😊_
 				</div>
 			</section>
 
-			{/* Footer/Contact Section */}
-			<section className="py-16 bg-gray-900 text-white">
+								{/* Footer/Contact Section */}
+			<section className="py-16 bg-gray-800 text-white">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<div className="grid md:grid-cols-3 gap-8 text-center">
 						<div>
-							<Phone className="w-8 h-8 mx-auto mb-4 text-orange-400" />
-							<h3 className="font-semibold text-lg mb-2">WhatsApp</h3>
+							<Phone className="w-8 h-8 mx-auto mb-4 text-yellow-400" />
+							<h3 className="font-semibold text-lg mb-2">WhatsApp - Táxi 24h</h3>
 							<p className="text-gray-300 mb-4">{config.contact.phone}</p>
 							<Button
 								onClick={handleWhatsAppClick}
@@ -641,17 +644,17 @@ _Aguardo seu orçamento! 😊_
 						</div>
 						
 						<div>
-							<MapPin className="w-8 h-8 mx-auto mb-4 text-orange-400" />
-							<h3 className="font-semibold text-lg mb-2">Localização</h3>
+							<MapPin className="w-8 h-8 mx-auto mb-4 text-yellow-400" />
+							<h3 className="font-semibold text-lg mb-2">Nossa Base</h3>
 							<p className="text-gray-300">Porto Seguro, Bahia</p>
 							<p className="text-gray-300">Costa do Descobrimento</p>
 						</div>
 						
 						<div>
-							<Clock className="w-8 h-8 mx-auto mb-4 text-orange-400" />
-							<h3 className="font-semibold text-lg mb-2">Atendimento</h3>
-							<p className="text-gray-300">Transfer Aeroporto: 24h</p>
-							<p className="text-gray-300">WhatsApp: 6h às 22h</p>
+							<Clock className="w-8 h-8 mx-auto mb-4 text-yellow-400" />
+							<h3 className="font-semibold text-lg mb-2">Funcionamento</h3>
+							<p className="text-gray-300">🚖 Táxi: 24 horas por dia</p>
+							<p className="text-gray-300">📱 WhatsApp: 6h às 22h</p>
 						</div>
 					</div>
 					
