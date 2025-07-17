@@ -1,0 +1,25 @@
+---
+description: "Deploy"
+globs: ["**/*.{ts,tsx,js,jsx}"]
+alwaysApply: true
+---
+// snippet: netlify-fix-rule
+/**
+ * Netlify Deploy Error Handling Rule
+ * 
+ * If you see a deploy error in Netlify logs:
+ *   1. Check the build command in netlify.toml or settings.
+ *   2. Certifique-se que dependencies estão instaladas (`npm install` / `yarn install`)
+ *   3. Confirme se o diretório de publicação está correto.
+ *
+ * Mensagem comum: "Command failed with exit code 1"
+ * Sugerido: Rodar localmente o comando de build e ver o erro completo.
+ *
+ * For Node projects:
+ *   - checar versão do node (em netlify.toml ou via `NODE_VERSION`)
+ *   - rodar `npm run build` localmente
+ *
+ * Para erros de dependências:
+ *   - Verifique se o 'package.json' está correto.
+ *   - Rode `npm ci` ao inves de `npm install` para builds limpos.
+ */
