@@ -215,7 +215,7 @@ _Aguardo seu orçamento! 😊_
 	return (
 		<div className="min-h-screen">
 			{/* Hero Section */}
-			<section id="inicio" className="relative text-white py-20 lg:py-32 overflow-hidden">
+			<section id="inicio" className="relative text-white py-16 sm:py-20 lg:py-32 overflow-hidden">
 				{/* Hero Background Image */}
 				<div className="absolute inset-0 z-0">
 					<img
@@ -229,28 +229,28 @@ _Aguardo seu orçamento! 😊_
 				<div className="absolute inset-0 bg-black/40 z-10"></div>
 				
 				<div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-20">
-					<div className="grid lg:grid-cols-2 gap-12 items-center">
+					<div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
 						<div className="text-center lg:text-left">
-							<h1 className="font-poppins font-bold text-4xl md:text-5xl lg:text-6xl leading-tight mb-6">
+							<h1 className="font-poppins font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight mb-4 sm:mb-6">
 								Táxi 24h • Transfer • Passeios em{' '}
 								<span className="text-yellow-custom-light">Porto Seguro</span>
 							</h1>
-							<p className="text-xl md:text-2xl text-gray-100 mb-8 leading-relaxed">
+							<p className="text-lg sm:text-xl md:text-2xl text-gray-100 mb-6 sm:mb-8 leading-relaxed">
 								<span className="font-bold text-yellow-custom-light">Táxi 24 horas</span>, transfers seguros e{' '}
 								<span className="font-semibold text-yellow-custom-lighter">passeios personalizados</span>{' '}
 								pela Costa do Descobrimento. Sua viagem com total comodidade!
 							</p>
-							<div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+							<div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
 								<Button
 									onClick={() => document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })}
-									className="gradient-yellow-custom hover:gradient-yellow-custom-hover text-black font-semibold px-8 py-4 text-lg transition-all duration-300 transform hover:scale-105"
+									className="gradient-yellow-custom hover:gradient-yellow-custom-hover text-black font-semibold px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg transition-all duration-300 transform hover:scale-105 button-mobile"
 								>
 									<Calendar className="w-5 h-5 mr-3" />
 									Solicitar Transfer
 								</Button>
 								<Button
 									onClick={handleWhatsAppClick}
-									className="bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 text-white font-semibold px-8 py-4 text-lg transition-all duration-300 transform hover:scale-105"
+									className="bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg transition-all duration-300 transform hover:scale-105 button-mobile"
 								>
 									<MessageSquare className="w-5 h-5 mr-3" />
 									WhatsApp Direto
@@ -259,10 +259,10 @@ _Aguardo seu orçamento! 😊_
 						</div>
 						
 						{/* Stats Cards */}
-						<div className="grid grid-cols-2 gap-4">
+						<div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mt-8 lg:mt-0">
 							{benefits.map((benefit, index) => (
 								<Card key={index} className="bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20 transition-all duration-300">
-									<CardContent className="p-6 text-center">
+									<CardContent className="p-4 sm:p-6 text-center">
 										<benefit.icon className="w-10 h-10 mx-auto mb-3 text-yellow-custom-light" />
 										<h3 className="font-semibold text-lg mb-2">{benefit.title}</h3>
 										<p className="text-sm text-gray-200">{benefit.description}</p>
@@ -275,10 +275,10 @@ _Aguardo seu orçamento! 😊_
 			</section>
 
 			{/* Popular Routes Section */}
-			<section id="rotas" className="py-20 bg-white">
+			<section id="rotas" className="py-12 sm:py-16 lg:py-20 bg-white">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-					<div className="text-center mb-16">
-						<h2 className="font-poppins font-bold text-3xl md:text-4xl text-gray-900 mb-4">
+					<div className="text-center mb-12 sm:mb-16">
+						<h2 className="font-poppins font-bold text-2xl sm:text-3xl md:text-4xl text-gray-900 mb-4">
 							🚖 Transfer • Táxi • Passeios
 						</h2>
 						<p className="text-xl text-gray-600">
@@ -287,7 +287,7 @@ _Aguardo seu orçamento! 😊_
 						</p>
 					</div>
 
-					<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
 						{routes.map((route, index) => (
 							<Card key={index} className="overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
 								<div className="relative h-48">
@@ -319,7 +319,7 @@ _Aguardo seu orçamento! 😊_
 											fillRoute(route.from, route.to)
 											document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })
 										}}
-										className="w-full bg-yellow-custom bg-yellow-custom-hover text-black font-semibold"
+										className="w-full bg-yellow-custom bg-yellow-custom-hover text-black font-semibold button-mobile"
 									>
 										Solicitar Orçamento
 									</Button>
@@ -331,10 +331,10 @@ _Aguardo seu orçamento! 😊_
 			</section>
 
 			{/* Services Section */}
-			<section id="servicos" className="py-20 bg-gray-50">
+			<section id="servicos" className="py-12 sm:py-16 lg:py-20 bg-gray-50">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-					<div className="text-center mb-16">
-						<h2 className="font-poppins font-bold text-3xl md:text-4xl text-gray-900 mb-4">
+					<div className="text-center mb-12 sm:mb-16">
+						<h2 className="font-poppins font-bold text-2xl sm:text-3xl md:text-4xl text-gray-900 mb-4">
 							🌟 Táxi 24h • Transfer • Passeios • Viagens
 						</h2>
 						<p className="text-xl text-gray-600">
@@ -343,10 +343,10 @@ _Aguardo seu orçamento! 😊_
 						</p>
 					</div>
 
-					<div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+					<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
 						{services.map((service, index) => (
 							<Card key={index} className="text-center hover:shadow-lg transition-shadow duration-300">
-								<CardContent className="p-8">
+								<CardContent className="p-6 sm:p-8">
 									<service.icon className="w-12 h-12 text-yellow-custom mx-auto mb-4" />
 									<h3 className="font-bold text-xl mb-3">{service.title}</h3>
 									<p className="text-gray-600 mb-4">{service.description}</p>
@@ -366,11 +366,11 @@ _Aguardo seu orçamento! 😊_
 			</section>
 
 			{/* About Section */}
-			<section id="sobre" className="py-20 bg-white">
+			<section id="sobre" className="py-12 sm:py-16 lg:py-20 bg-white">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-					<div className="grid lg:grid-cols-2 gap-12 items-center">
+					<div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
 						<div>
-							<h2 className="font-poppins font-bold text-3xl md:text-4xl text-gray-900 mb-6">
+							<h2 className="font-poppins font-bold text-2xl sm:text-3xl md:text-4xl text-gray-900 mb-6">
 								🚖 Por que escolher a Táxi Granjeiro?
 							</h2>
 							<p className="text-xl text-gray-600 mb-8">
@@ -391,7 +391,7 @@ _Aguardo seu orçamento! 😊_
 							</div>
 						</div>
 						
-						<div className="grid grid-cols-2 gap-4">
+						<div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8 lg:mt-0">
 							<img
 								src="/images/fleet/chevrolet-spin-interior.jpeg"
 								alt="Interior do Chevrolet Spin"
@@ -408,10 +408,10 @@ _Aguardo seu orçamento! 😊_
 			</section>
 
 			{/* Contact Form Section */}
-			<section id="contato" className="py-20 bg-gray-50">
+			<section id="contato" className="py-12 sm:py-16 lg:py-20 bg-gray-50">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-					<div className="text-center mb-16">
-						<h2 className="font-poppins font-bold text-3xl md:text-4xl text-gray-900 mb-4">
+					<div className="text-center mb-12 sm:mb-16">
+						<h2 className="font-poppins font-bold text-2xl sm:text-3xl md:text-4xl text-gray-900 mb-4">
 							🚖 Solicite: Táxi • Transfer • Passeio • Viagem
 						</h2>
 						<p className="text-xl text-gray-600">
@@ -431,11 +431,11 @@ _Aguardo seu orçamento! 😊_
 									Táxi 24h • Transfer • Passeios • Viagens - Preencha e seja redirecionado ao WhatsApp
 								</p>
 							</CardHeader>
-							<CardContent className="p-8">
+							<CardContent className="p-6 sm:p-8 form-mobile">
 								{/* Rotas Populares */}
 								<div className="bg-yellow-custom-50 p-6 rounded-lg mb-8">
 									<h3 className="font-semibold text-gray-800 mb-4 text-center">🚖 Rotas Populares - Táxi/Transfer/Passeio (clique para preencher):</h3>
-									<div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+									<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3">
 										{popularRoutes.map((route, index) => (
 											<button
 												key={index}
@@ -449,9 +449,9 @@ _Aguardo seu orçamento! 😊_
 									</div>
 								</div>
 
-								<form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+								<form onSubmit={handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6">
 									{/* Informações Pessoais */}
-									<div className="grid md:grid-cols-2 gap-6">
+									<div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
 										<div>
 											<Label htmlFor="name" className="text-gray-700 font-medium">
 												Nome Completo *
@@ -484,7 +484,7 @@ _Aguardo seu orçamento! 😊_
 									</div>
 
 									{/* Origem e Destino */}
-									<div className="grid md:grid-cols-2 gap-6">
+									<div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
 										<div>
 											<Label htmlFor="origin" className="text-gray-700 font-medium">
 												Local de Origem *
@@ -517,7 +517,7 @@ _Aguardo seu orçamento! 😊_
 									</div>
 
 									{/* Data e Horário */}
-									<div className="grid md:grid-cols-3 gap-6">
+									<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
 										<div>
 											<Label htmlFor="date" className="text-gray-700 font-medium">
 												Data da Viagem *
@@ -590,7 +590,7 @@ _Aguardo seu orçamento! 😊_
 									<Button
 										type="submit"
 										disabled={isSubmitting}
-										className="w-full bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 text-white font-semibold py-4 text-lg transition-all duration-300 transform hover:scale-105"
+										className="w-full bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 text-white font-semibold py-4 text-lg transition-all duration-300 transform hover:scale-105 button-mobile form-mobile"
 									>
 										{isSubmitting ? (
 											<>
@@ -628,9 +628,9 @@ _Aguardo seu orçamento! 😊_
 			</section>
 
 								{/* Footer/Contact Section */}
-			<section className="py-16 bg-gray-800 text-white">
+			<section className="py-12 sm:py-16 bg-gray-800 text-white">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-					<div className="grid md:grid-cols-3 gap-8 text-center">
+					<div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 text-center">
 						<div>
 							<Phone className="w-8 h-8 mx-auto mb-4 text-yellow-custom" />
 							<h3 className="font-semibold text-lg mb-2">WhatsApp - Táxi 24h</h3>

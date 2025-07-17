@@ -36,14 +36,14 @@ export function Header() {
 	return (
 		<header className="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-50">
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-				<div className="flex items-center justify-between h-16">
+				<div className="flex items-center justify-between h-14 sm:h-16">
 					{/* Logo */}
 											<div className="flex-shrink-0">
 							<Link href="/" className="flex items-center space-x-2">
 								<div className="w-10 h-10 gradient-yellow-custom rounded-lg flex items-center justify-center">
 									<span className="text-black font-bold text-lg">TG</span>
 								</div>
-							<span className="font-poppins font-bold text-xl text-gray-900">
+							<span className="font-poppins font-bold text-lg sm:text-xl text-gray-900">
 								Táxi Granjeiro
 							</span>
 						</Link>
@@ -66,7 +66,7 @@ export function Header() {
 					<div className="hidden md:flex items-center space-x-4">
 						<Button
 							onClick={handleWhatsAppClick}
-							className="bg-yellow-custom bg-yellow-custom-hover text-black font-medium px-6 py-2 rounded-lg transition-colors duration-200"
+							className="bg-yellow-custom bg-yellow-custom-hover text-black font-medium px-3 sm:px-6 py-2 text-sm sm:text-base rounded-lg transition-colors duration-200"
 						>
 							<Phone className="w-4 h-4 mr-2" />
 							Agendar Viagem

@@ -87,61 +87,167 @@ body {
 
 /* Cores amarelo vivo personalizadas */
 .bg-yellow-custom {
-  background-color: #fdde44;
+  background-color: #fdde44 !important;
 }
 
 .bg-yellow-custom-hover:hover {
-  background-color: #f4d03f;
+  background-color: #f4d03f !important;
 }
 
 .bg-yellow-custom:hover {
-  background-color: #f4d03f;
+  background-color: #f4d03f !important;
+}
+
+/* Mobile hover fix */
+@media (hover: none) and (pointer: coarse) {
+  .bg-yellow-custom:hover {
+    background-color: #fdde44 !important;
+  }
+  .bg-yellow-custom-hover:hover {
+    background-color: #fdde44 !important;
+  }
 }
 
 .text-yellow-custom {
-  color: #fdde44;
+  color: #fdde44 !important;
 }
 
 .text-yellow-custom-light {
-  color: #fef2cd;
+  color: #fef2cd !important;
 }
 
 .text-yellow-custom-lighter {
-  color: #fef7dd;
+  color: #fef7dd !important;
 }
 
 .border-yellow-custom {
-  border-color: #fdde44;
+  border-color: #fdde44 !important;
 }
 
 .bg-yellow-custom-light {
-  background-color: #fef9e7;
+  background-color: #fef9e7 !important;
 }
 
 .bg-yellow-custom-50 {
-  background-color: #fef9e7;
+  background-color: #fef9e7 !important;
 }
 
 .gradient-yellow-custom {
-  background: linear-gradient(135deg, #fdde44 0%, #f1c40f 100%);
+  background: linear-gradient(135deg, #fdde44 0%, #f1c40f 100%) !important;
 }
 
 .gradient-yellow-custom-hover:hover {
-  background: linear-gradient(135deg, #f4d03f 0%, #d4ac0d 100%);
+  background: linear-gradient(135deg, #f4d03f 0%, #d4ac0d 100%) !important;
 }
 
 .gradient-yellow-custom:hover {
-  background: linear-gradient(135deg, #f4d03f 0%, #d4ac0d 100%);
+  background: linear-gradient(135deg, #f4d03f 0%, #d4ac0d 100%) !important;
+}
+
+/* Mobile gradient fix */
+@media (hover: none) and (pointer: coarse) {
+  .gradient-yellow-custom:hover {
+    background: linear-gradient(135deg, #fdde44 0%, #f1c40f 100%) !important;
+  }
+  .gradient-yellow-custom-hover:hover {
+    background: linear-gradient(135deg, #fdde44 0%, #f1c40f 100%) !important;
+  }
 }
 
 /* Smooth scroll */
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Scroll offset for fixed header */
 section[id] {
   scroll-margin-top: 4rem;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+  
+  body {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Fix for mobile viewport units */
+  .min-h-screen {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+  }
+  
+  /* Touch targets */
+  button, a, input, textarea {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Prevent horizontal scroll */
+  body {
+    overflow-x: hidden;
+  }
+  
+  /* Mobile card improvements */
+  .card-mobile {
+    padding: 1rem !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  /* Mobile form improvements */
+  .form-mobile input,
+  .form-mobile textarea {
+    font-size: 16px !important; /* Prevent zoom on iOS */
+  }
+  
+  /* Mobile hero section */
+  .hero-mobile {
+    padding-top: 2rem !important;
+    padding-bottom: 3rem !important;
+  }
+  
+  /* Mobile text improvements */
+  .text-mobile-base {
+    font-size: 1rem !important;
+    line-height: 1.5 !important;
+  }
+  
+  .text-mobile-lg {
+    font-size: 1.125rem !important;
+    line-height: 1.6 !important;
+  }
+}
+
+/* Better mobile colors */
+@media (max-width: 640px) {
+  /* Ensure yellow colors are always visible */
+  .text-yellow-custom {
+    color: #fdde44 !important;
+    font-weight: 600 !important;
+  }
+  
+  .bg-yellow-custom {
+    background-color: #fdde44 !important;
+  }
+  
+  .gradient-yellow-custom {
+    background: linear-gradient(135deg, #fdde44 0%, #f1c40f 100%) !important;
+  }
+  
+  /* Mobile-specific button styles */
+  .button-mobile {
+    padding: 0.75rem 1.5rem !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    border-radius: 0.5rem !important;
+    min-height: 48px !important;
+  }
 }
 
 .text-shadow {
@@ -274,3 +380,5 @@ section[id] {
 .card-shadow:hover {
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
+
+
