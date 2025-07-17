@@ -5,7 +5,7 @@
 	"start_url": "/",
 	"display": "standalone",
 	"background_color": "#ffffff",
-	"theme_color": "#fbbf24",
+	"theme_color": "#fdde44",
 	"orientation": "portrait-primary",
 	"categories": ["travel", "transportation"],
 	"lang": "pt-BR",

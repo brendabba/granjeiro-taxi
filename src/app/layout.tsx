@@ -60,7 +60,7 @@ export default function RootLayout({
 		<html lang="pt-BR">
 			<head>
 				<link rel="manifest" href="/manifest.json" />
-				<meta name="theme-color" content="#fbbf24" />
+				<meta name="theme-color" content="#fdde44" />
 				<link rel="apple-touch-icon" href="/icon.svg" />
 				<link rel="preconnect" href="https://fonts.googleapis.com" />
 				<link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

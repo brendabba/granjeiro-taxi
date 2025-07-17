@@ -233,17 +233,17 @@ _Aguardo seu orçamento! 😊_
 						<div className="text-center lg:text-left">
 							<h1 className="font-poppins font-bold text-4xl md:text-5xl lg:text-6xl leading-tight mb-6">
 								Táxi 24h • Transfer • Passeios em{' '}
-								<span className="text-yellow-300">Porto Seguro</span>
+								<span className="text-yellow-custom-light">Porto Seguro</span>
 							</h1>
 							<p className="text-xl md:text-2xl text-gray-100 mb-8 leading-relaxed">
-								<span className="font-bold text-yellow-300">Táxi 24 horas</span>, transfers seguros e{' '}
-								<span className="font-semibold text-yellow-200">passeios personalizados</span>{' '}
+								<span className="font-bold text-yellow-custom-light">Táxi 24 horas</span>, transfers seguros e{' '}
+								<span className="font-semibold text-yellow-custom-lighter">passeios personalizados</span>{' '}
 								pela Costa do Descobrimento. Sua viagem com total comodidade!
 							</p>
 							<div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
 								<Button
 									onClick={() => document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })}
-									className="bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-black font-semibold px-8 py-4 text-lg transition-all duration-300 transform hover:scale-105"
+									className="gradient-yellow-custom hover:gradient-yellow-custom-hover text-black font-semibold px-8 py-4 text-lg transition-all duration-300 transform hover:scale-105"
 								>
 									<Calendar className="w-5 h-5 mr-3" />
 									Solicitar Transfer
@@ -263,7 +263,7 @@ _Aguardo seu orçamento! 😊_
 							{benefits.map((benefit, index) => (
 								<Card key={index} className="bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20 transition-all duration-300">
 									<CardContent className="p-6 text-center">
-										<benefit.icon className="w-10 h-10 mx-auto mb-3 text-yellow-300" />
+										<benefit.icon className="w-10 h-10 mx-auto mb-3 text-yellow-custom-light" />
 										<h3 className="font-semibold text-lg mb-2">{benefit.title}</h3>
 										<p className="text-sm text-gray-200">{benefit.description}</p>
 									</CardContent>
@@ -282,7 +282,7 @@ _Aguardo seu orçamento! 😊_
 							🚖 Transfer • Táxi • Passeios
 						</h2>
 						<p className="text-xl text-gray-600">
-							<span className="font-semibold text-yellow-600">Táxi 24h</span>, transfers e passeios personalizados 
+							<span className="font-semibold text-yellow-custom">Táxi 24h</span>, transfers e passeios personalizados 
 							para os destinos mais procurados da Costa do Descobrimento
 						</p>
 					</div>
@@ -319,7 +319,7 @@ _Aguardo seu orçamento! 😊_
 											fillRoute(route.from, route.to)
 											document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })
 										}}
-										className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-semibold"
+										className="w-full bg-yellow-custom bg-yellow-custom-hover text-black font-semibold"
 									>
 										Solicitar Orçamento
 									</Button>
@@ -338,7 +338,7 @@ _Aguardo seu orçamento! 😊_
 							🌟 Táxi 24h • Transfer • Passeios • Viagens
 						</h2>
 						<p className="text-xl text-gray-600">
-							<span className="font-bold text-yellow-600">Serviço completo 24 horas:</span> táxi urbano, 
+							<span className="font-bold text-yellow-custom">Serviço completo 24 horas:</span> táxi urbano, 
 							transfers aeroporto, passeios turísticos e viagens personalizadas
 						</p>
 					</div>
@@ -347,13 +347,13 @@ _Aguardo seu orçamento! 😊_
 						{services.map((service, index) => (
 							<Card key={index} className="text-center hover:shadow-lg transition-shadow duration-300">
 								<CardContent className="p-8">
-									<service.icon className="w-12 h-12 text-yellow-600 mx-auto mb-4" />
+									<service.icon className="w-12 h-12 text-yellow-custom mx-auto mb-4" />
 									<h3 className="font-bold text-xl mb-3">{service.title}</h3>
 									<p className="text-gray-600 mb-4">{service.description}</p>
 									<ul className="text-sm text-gray-500 space-y-1">
 										{service.features.map((feature, idx) => (
 											<li key={idx} className="flex items-center justify-center">
-												<CheckCircle className="w-4 h-4 text-yellow-600 mr-2" />
+												<CheckCircle className="w-4 h-4 text-yellow-custom mr-2" />
 												{feature}
 											</li>
 										))}
@@ -374,14 +374,14 @@ _Aguardo seu orçamento! 😊_
 								🚖 Por que escolher a Táxi Granjeiro?
 							</h2>
 							<p className="text-xl text-gray-600 mb-8">
-								<span className="font-bold text-yellow-600">Táxi 24 horas</span>, empresa local especializada em 
+								<span className="font-bold text-yellow-custom">Táxi 24 horas</span>, empresa local especializada em 
 								transfer, passeios e turismo na Costa do Descobrimento. Sua viagem com total segurança e comodidade!
 							</p>
 							
 							<div className="space-y-6">
 								{aboutFeatures.map((feature, index) => (
 									<div key={index} className="flex items-start">
-										<feature.icon className="w-8 h-8 text-yellow-600 mt-1 mr-4" />
+										<feature.icon className="w-8 h-8 text-yellow-custom mt-1 mr-4" />
 										<div>
 											<h3 className="font-semibold text-lg text-gray-900 mb-1">{feature.title}</h3>
 											<p className="text-gray-600">{feature.description}</p>
@@ -415,25 +415,25 @@ _Aguardo seu orçamento! 😊_
 							🚖 Solicite: Táxi • Transfer • Passeio • Viagem
 						</h2>
 						<p className="text-xl text-gray-600">
-							<span className="font-semibold text-yellow-600">Serviço 24 horas:</span> Preencha o formulário 
+							<span className="font-semibold text-yellow-custom">Serviço 24 horas:</span> Preencha o formulário 
 							e seja redirecionado para o WhatsApp com sua solicitação organizada
 						</p>
 					</div>
 
 					<div className="max-w-4xl mx-auto">
 						<Card className="shadow-xl">
-							<CardHeader className="bg-gradient-to-r from-yellow-500 to-yellow-600 text-black">
+							<CardHeader className="gradient-yellow-custom text-black">
 								<CardTitle className="text-2xl flex items-center justify-center">
 									<MessageSquare className="w-6 h-6 mr-3" />
 									Formulário de Solicitação
 								</CardTitle>
-								<p className="text-yellow-900 text-center font-medium">
+								<p className="text-gray-800 text-center font-medium">
 									Táxi 24h • Transfer • Passeios • Viagens - Preencha e seja redirecionado ao WhatsApp
 								</p>
 							</CardHeader>
 							<CardContent className="p-8">
 								{/* Rotas Populares */}
-								<div className="bg-yellow-50 p-6 rounded-lg mb-8">
+								<div className="bg-yellow-custom-50 p-6 rounded-lg mb-8">
 									<h3 className="font-semibold text-gray-800 mb-4 text-center">🚖 Rotas Populares - Táxi/Transfer/Passeio (clique para preencher):</h3>
 									<div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
 										{popularRoutes.map((route, index) => (
@@ -441,7 +441,7 @@ _Aguardo seu orçamento! 😊_
 												key={index}
 												type="button"
 												onClick={() => fillRoute(route.from, route.to)}
-												className="text-left text-sm bg-white p-3 rounded border hover:bg-yellow-100 hover:border-yellow-500 transition-colors"
+												className="text-left text-sm bg-white p-3 rounded border hover:bg-yellow-custom-light hover:border-yellow-custom transition-colors"
 											>
 												{route.from} → {route.to}
 											</button>
@@ -607,12 +607,12 @@ _Aguardo seu orçamento! 😊_
 									</Button>
 
 									{/* Aviso */}
-									<div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+									<div className="bg-yellow-custom-50 border border-yellow-custom rounded-lg p-4">
 										<div className="flex items-start">
-											<CheckCircle className="w-5 h-5 text-yellow-600 mt-0.5 mr-3" />
+											<CheckCircle className="w-5 h-5 text-yellow-custom mt-0.5 mr-3" />
 											<div>
-												<h4 className="font-semibold text-yellow-800">Como funciona:</h4>
-												<p className="text-yellow-700 text-sm mt-1">
+												<h4 className="font-semibold text-gray-800">Como funciona:</h4>
+												<p className="text-gray-700 text-sm mt-1">
 													Ao clicar em &quot;Enviar via WhatsApp&quot;, você será redirecionado automaticamente 
 													para o WhatsApp com uma mensagem organizada contendo todos os dados preenchidos. 
 													Basta enviar para receber seu orçamento!
@@ -632,7 +632,7 @@ _Aguardo seu orçamento! 😊_
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<div className="grid md:grid-cols-3 gap-8 text-center">
 						<div>
-							<Phone className="w-8 h-8 mx-auto mb-4 text-yellow-400" />
+							<Phone className="w-8 h-8 mx-auto mb-4 text-yellow-custom" />
 							<h3 className="font-semibold text-lg mb-2">WhatsApp - Táxi 24h</h3>
 							<p className="text-gray-300 mb-4">{config.contact.phone}</p>
 							<Button
@@ -644,14 +644,14 @@ _Aguardo seu orçamento! 😊_
 						</div>
 						
 						<div>
-							<MapPin className="w-8 h-8 mx-auto mb-4 text-yellow-400" />
+							<MapPin className="w-8 h-8 mx-auto mb-4 text-yellow-custom" />
 							<h3 className="font-semibold text-lg mb-2">Nossa Base</h3>
 							<p className="text-gray-300">Porto Seguro, Bahia</p>
 							<p className="text-gray-300">Costa do Descobrimento</p>
 						</div>
 						
 						<div>
-							<Clock className="w-8 h-8 mx-auto mb-4 text-yellow-400" />
+							<Clock className="w-8 h-8 mx-auto mb-4 text-yellow-custom" />
 							<h3 className="font-semibold text-lg mb-2">Funcionamento</h3>
 							<p className="text-gray-300">🚖 Táxi: 24 horas por dia</p>
 							<p className="text-gray-300">📱 WhatsApp: 6h às 22h</p>
