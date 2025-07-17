@@ -83,11 +83,11 @@ _Aguardo seu orçamento! 😊_
 
 	const popularRoutes = [
 		{ from: 'Aeroporto de Porto Seguro', to: 'Trancoso' },
-		{ from: 'Aeroporto de Porto Seguro', to: 'Arraial d&apos;Ajuda' },
+		        { from: 'Aeroporto de Porto Seguro', to: 'Arraial d\'Ajuda' },
 		{ from: 'Aeroporto de Porto Seguro', to: 'Caraíva' },
 		{ from: 'Aeroporto de Porto Seguro', to: 'Centro de Porto Seguro' },
 		{ from: 'Centro de Porto Seguro', to: 'Trancoso' },
-		{ from: 'Trancoso', to: 'Arraial d&apos;Ajuda' }
+		        { from: 'Trancoso', to: 'Arraial d\'Ajuda' }
 	]
 
 	const fillRoute = (from: string, to: string) => {

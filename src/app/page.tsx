@@ -91,7 +91,7 @@ export default function HomePage() {
 		},
 		{
 			from: 'Aeroporto',
-			to: 'Arraial d&apos;Ajuda',
+			to: 'Arraial d\'Ajuda',
 			duration: '35 min',
 			price: 'A partir de R$ 100',
 			image: '/images/destinations/arraial-ajuda-praia.jpg',
@@ -136,11 +136,11 @@ export default function HomePage() {
 
 	const popularRoutes = [
 		{ from: 'Aeroporto de Porto Seguro', to: 'Trancoso' },
-		{ from: 'Aeroporto de Porto Seguro', to: 'Arraial d&apos;Ajuda' },
+		        { from: 'Aeroporto de Porto Seguro', to: 'Arraial d\'Ajuda' },
 		{ from: 'Aeroporto de Porto Seguro', to: 'Caraíva' },
 		{ from: 'Aeroporto de Porto Seguro', to: 'Centro de Porto Seguro' },
 		{ from: 'Centro de Porto Seguro', to: 'Trancoso' },
-		{ from: 'Trancoso', to: 'Arraial d&apos;Ajuda' }
+		        { from: 'Trancoso', to: 'Arraial d\'Ajuda' }
 	]
 
 	const aboutFeatures = [
@@ -391,12 +391,12 @@ _Aguardo seu orçamento! 😊_
 						
 						<div className="grid grid-cols-2 gap-4">
 							<img
-								src="/images/fleet/chevrolet-spin-interior.jpg"
+								src="/images/fleet/chevrolet-spin-interior.jpeg"
 								alt="Interior do Chevrolet Spin"
 								className="rounded-lg shadow-lg"
 							/>
 							<img
-								src="/images/fleet/chevrolet-spin-exterior.jpg"
+								src="/images/fleet/chevrolet-spin-exterior.jpeg"
 								alt="Exterior do Chevrolet Spin"
 								className="rounded-lg shadow-lg mt-8"
 							/>

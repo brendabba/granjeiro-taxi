@@ -19,7 +19,7 @@ export function Footer() {
 							</span>
 						</div>
 						<p className="text-gray-300 text-sm mb-4">
-							Transfer seguro e pontual em Porto Seguro, Trancoso, Arraial d&apos;Ajuda e Caraíva. 
+							Transfer seguro e pontual em Porto Seguro, Trancoso, Arraial d'Ajuda e Caraíva. 
 							Sua viagem com conforto e segurança.
 						</p>
 						<div className="flex items-center space-x-2 text-sm text-gray-300">
@@ -73,7 +73,7 @@ export function Footer() {
 						<ul className="space-y-2 text-sm text-gray-300">
 							<li>• Aeroporto de Porto Seguro</li>
 							<li>• Trancoso</li>
-							<li>• Arraial d&apos;Ajuda</li>
+							                <li>• Arraial d'Ajuda</li>
 							<li>• Caraíva</li>
 							<li>• Coroa Vermelha</li>
 							<li>• Centro de Porto Seguro</li>
