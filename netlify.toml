@@ -1,9 +1,10 @@
 [build]
   publish = "out"
-  command = "npm run build:static"
+  command = "node scripts/netlify-build.js"
 
 [build.environment]
-  NODE_VERSION = "18"
+  NODE_VERSION = "20"
+  NPM_FLAGS = "--prefer-offline --no-audit"
 
 # Redirects para SPA (Single Page Application)
 [[redirects]]
