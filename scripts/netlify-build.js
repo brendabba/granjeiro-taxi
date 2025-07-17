@@ -12,26 +12,17 @@ try {
     throw new Error('package.json não encontrado!');
   }
 
-  // Instalar todas as dependências
-  console.log('📦 Instalando todas as dependências...');
+  // Instalar todas as dependências de forma limpa
+  console.log('📦 Instalando dependências...');
   execSync('npm install', { stdio: 'inherit' });
 
-  // Verificar se o Next.js está instalado localmente
-  console.log('📦 Verificando instalação local do Next.js...');
-  
-  try {
-    execSync('npm list next', { stdio: 'inherit' });
-    console.log('✅ Next.js instalado localmente!');
-  } catch (error) {
-    console.log('❌ Reinstalando dependências...');
-    execSync('npm install --force', { stdio: 'inherit' });
-  }
+  console.log('✅ Dependências instaladas com sucesso!');
 
   // Executar setup para modo estático
   console.log('⚙️ Configurando modo estático...');
   execSync('npm run setup:static', { stdio: 'inherit' });
 
-  // Executar build usando o script npm
+  // Executar build
   console.log('🔨 Executando build...');
   execSync('npm run build', { stdio: 'inherit' });
 
@@ -40,8 +31,9 @@ try {
     throw new Error('Pasta "out" não foi gerada! Build falhou.');
   }
 
-  console.log('✅ Build concluído com sucesso!');
-  console.log('📂 Arquivos gerados na pasta "out"');
+  // Verificar conteúdo da pasta out
+  const outFiles = fs.readdirSync(path.join(process.cwd(), 'out'));
+  console.log(`📂 Build concluído! ${outFiles.length} arquivos gerados na pasta "out"`);
 
 } catch (error) {
   console.error('❌ Erro durante o build:', error.message);
