@@ -45,7 +45,8 @@ export default function ContatoPage() {
 		register,
 		handleSubmit,
 		formState: { errors },
-		reset
+		reset,
+		setValue
 	} = useForm<ContactForm>({
 		resolver: zodResolver(contactSchema)
 	})
@@ -91,11 +92,8 @@ _Aguardo seu orçamento! 😊_
 	]
 
 	const fillRoute = (from: string, to: string) => {
-		const originInput = document.getElementById('origin') as HTMLInputElement
-		const destinationInput = document.getElementById('destination') as HTMLInputElement
-		
-		if (originInput) originInput.value = from
-		if (destinationInput) destinationInput.value = to
+		setValue('origin', from)
+		setValue('destination', to)
 	}
 
 	const contactInfo = [

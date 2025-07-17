@@ -52,7 +52,8 @@ export default function HomePage() {
 		register,
 		handleSubmit,
 		formState: { errors },
-		reset
+		reset,
+		setValue
 	} = useForm<ContactForm>({
 		resolver: zodResolver(contactSchema)
 	})
@@ -198,11 +199,14 @@ _Aguardo seu orçamento! 😊_
 	}
 
 	const fillRoute = (from: string, to: string) => {
-		const originInput = document.getElementById('origin') as HTMLInputElement
-		const destinationInput = document.getElementById('destination') as HTMLInputElement
+		setValue('origin', from)
+		setValue('destination', to)
 		
-		if (originInput) originInput.value = from
-		if (destinationInput) destinationInput.value = to
+		// Scroll suave para o formulário para melhor UX
+		const formElement = document.getElementById('contact-form')
+		if (formElement) {
+			formElement.scrollIntoView({ behavior: 'smooth', block: 'center' })
+		}
 	}
 
 	const handleWhatsAppClick = () => {
@@ -449,7 +453,7 @@ _Aguardo seu orçamento! 😊_
 									</div>
 								</div>
 
-								<form onSubmit={handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6">
+								<form id="contact-form" onSubmit={handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6">
 									{/* Informações Pessoais */}
 									<div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
 										<div>
