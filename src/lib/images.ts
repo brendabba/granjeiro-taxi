@@ -3,33 +3,39 @@ export const images = {
   // Destinos principais
   destinations: {
     trancoso: '/images/destinations/trancoso-quadrado.jpg',
+    trancoso_praia: '/images/destinations/trancoso-praia.jpg',
     arraial: '/images/destinations/arraial-ajuda-praia.jpg',
+    arraial_centro: '/images/destinations/arraial-ajuda-centro.jpeg',
     caraiva: '/images/destinations/caraiva-vila.jpg',
+    caraiva_rio: '/images/destinations/caraiva-rio.jpeg',
     porto: '/images/destinations/porto-seguro-centro.jpg',
-    coroa: '/images/destinations/coroa-vermelha.jpg',
-    santa: '/images/destinations/santa-cruz-cabralia.jpg'
+    coroa: '/images/destinations/coroa-vermelha.jpeg',
+    santa: '/images/destinations/santa-cruz-cabralia.jpg',
+    ponta_grande: '/images/destinations/ponta-grande.jpeg',
+    espelho: '/images/destinations/espelho-praia.jpeg'
   },
   
   // Hero/Banner images
   hero: {
     main: '/images/hero/porto-seguro-aeroporto.jpg',
-    trancoso: '/images/hero/trancoso-vista.jpg',
-    praias: '/images/hero/costa-descobrimento.jpg'
+    trancoso: '/images/hero/trancoso-vista.jpeg',
+    costa: '/images/hero/costa-descobrimento.jpeg',
+    bahia: '/images/hero/bahia-por-do-sol.jpeg'
   },
   
   // Frota - Chevrolet Spin
   fleet: {
-    spin_exterior: '/images/fleet/chevrolet-spin-exterior.jpg',
-    spin_interior: '/images/fleet/chevrolet-spin-interior.jpg',
-    spin_bagageiro: '/images/fleet/chevrolet-spin-bagageiro.jpg',
-    spin_familia: '/images/fleet/chevrolet-spin-familia.jpg'
+    spin_exterior: '/images/fleet/chevrolet-spin-exterior.jpeg',
+    spin_interior: '/images/fleet/chevrolet-spin-interior.jpeg',
+    spin_bagageiro: '/images/fleet/chevrolet-spin-bagageiro.jpeg',
+    spin_familia: '/images/fleet/chevrolet-spin-familia.jpeg'
   },
   
   // Equipe e serviço
   service: {
-    driver: '/images/service/motorista-uniforme.jpg',
-    atendimento: '/images/service/atendimento-cliente.jpg',
-    bagagem: '/images/service/ajuda-bagagem.jpg'
+    driver: '/images/service/motorista-uniforme.jpeg',
+    atendimento: '/images/service/atendimento-cliente.jpeg',
+    bagagem: '/images/service/ajuda-bagagem.jpeg'
   },
   
   // Placeholders para desenvolvimento

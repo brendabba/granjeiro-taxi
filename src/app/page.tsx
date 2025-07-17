@@ -48,15 +48,15 @@ export default function HomePage() {
 			to: 'Trancoso',
 			duration: '45 min',
 			price: 'A partir de R$ 120',
-			image: getImageUrl('destinations', 'trancoso', true),
+			image: '/images/destinations/trancoso-quadrado.jpg',
 			description: 'Quadrado histórico e praias paradisíacas'
 		},
 		{
 			from: 'Aeroporto',
-			to: 'Arraial d\'Ajuda',
+			to: 'Arraial d&apos;Ajuda',
 			duration: '35 min',
 			price: 'A partir de R$ 100',
-			image: getImageUrl('destinations', 'arraial', true),
+			image: '/images/destinations/arraial-ajuda-praia.jpg',
 			description: 'Centro histórico e praias deslumbrantes'
 		},
 		{
@@ -64,7 +64,7 @@ export default function HomePage() {
 			to: 'Caraíva',
 			duration: '1h 30min',
 			price: 'A partir de R$ 200',
-			image: getImageUrl('destinations', 'caraiva', true),
+			image: '/images/destinations/caraiva-vila.jpg',
 			description: 'Vila rústica e natureza preservada'
 		}
 	]
@@ -79,25 +79,20 @@ export default function HomePage() {
 	return (
 		<div className="min-h-screen">
 			{/* Hero Section */}
-			<section className="relative bg-gradient-to-br from-orange-600 via-orange-500 to-orange-700 text-white py-20 lg:py-32 overflow-hidden">
-				<div className="absolute inset-0 bg-black/20"></div>
-				<div className="absolute inset-0 bg-[url('/hero-pattern.svg')] opacity-10"></div>
-				
+			<section className="relative text-white py-20 lg:py-32 overflow-hidden">
 				{/* Hero Background Image */}
 				<div className="absolute inset-0 z-0">
-					<OptimizedImage
-						src={getImageUrl('hero', 'beach', true)}
+					<img
+						src="/images/hero/costa-descobrimento.jpeg"
 						alt="Porto Seguro - Costa do Descobrimento"
-						fill
-						priority
-						objectFit="cover"
-						className="opacity-30"
-						placeholder="blur"
-						blurDataURL={generateBlurDataURL()}
+						className="w-full h-full object-cover"
 					/>
 				</div>
 				
-				<div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
+				{/* Overlay para contraste do texto */}
+				<div className="absolute inset-0 bg-black/40 z-10"></div>
+				
+				<div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-20">
 					<div className="grid lg:grid-cols-2 gap-12 items-center">
 						<div className="text-center lg:text-left">
 							<h1 className="font-poppins font-bold text-4xl md:text-5xl lg:text-6xl leading-tight mb-6">
@@ -166,6 +161,39 @@ export default function HomePage() {
 				</div>
 			</section>
 
+			{/* Teste de Imagens */}
+			<section className="py-10 bg-white">
+				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+					<h2 className="text-center text-2xl font-bold mb-8 text-gray-900">🖼️ Teste de Imagens</h2>
+					<div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+						<div className="bg-gray-100 p-4 rounded-lg">
+							<h3 className="font-semibold mb-2">Trancoso</h3>
+							<img
+								src="/images/destinations/trancoso-quadrado.jpg"
+								alt="Trancoso"
+								className="w-full h-48 object-cover rounded"
+							/>
+						</div>
+						<div className="bg-gray-100 p-4 rounded-lg">
+							<h3 className="font-semibold mb-2">Arraial d&apos;Ajuda</h3>
+							<img
+								src="/images/destinations/arraial-ajuda-praia.jpg"
+								alt="Arraial d'Ajuda"
+								className="w-full h-48 object-cover rounded"
+							/>
+						</div>
+						<div className="bg-gray-100 p-4 rounded-lg">
+							<h3 className="font-semibold mb-2">Caraíva</h3>
+							<img
+								src="/images/destinations/caraiva-vila.jpg"
+								alt="Caraíva"
+								className="w-full h-48 object-cover rounded"
+							/>
+						</div>
+					</div>
+				</div>
+			</section>
+
 			{/* Popular Routes Section */}
 			<section className="py-20">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -182,16 +210,13 @@ export default function HomePage() {
 						{routes.map((route, index) => (
 							<Card key={index} className="overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
 								<div className="relative h-48">
-									<OptimizedImage
+									<img
 										src={route.image}
 										alt={`${route.to} - Destino turístico`}
-										fill
-										objectFit="cover"
-										placeholder="blur"
-										blurDataURL={generateBlurDataURL()}
+										className="w-full h-full object-cover"
 									/>
-									<div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-									<div className="absolute bottom-4 left-4 text-white">
+									<div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+									<div className="absolute bottom-4 left-4 text-white z-10">
 										<MapPin className="w-5 h-5 inline mr-2" />
 										<span className="font-semibold">{route.from} → {route.to}</span>
 										<p className="text-sm mt-1 opacity-90">{route.description}</p>

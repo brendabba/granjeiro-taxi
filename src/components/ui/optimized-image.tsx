@@ -34,15 +34,9 @@ export function OptimizedImage({
   objectFit = 'cover',
   ...props
 }: OptimizedImageProps) {
-  const [isLoading, setIsLoading] = useState(true)
   const [hasError, setHasError] = useState(false)
 
-  const handleLoad = () => {
-    setIsLoading(false)
-  }
-
   const handleError = () => {
-    setIsLoading(false)
     setHasError(true)
   }
 
@@ -72,24 +66,15 @@ export function OptimizedImage({
         quality={quality}
         className={cn(
           'transition-opacity duration-300',
-          isLoading ? 'opacity-0' : 'opacity-100',
           objectFit === 'cover' && 'object-cover',
           objectFit === 'contain' && 'object-contain',
           objectFit === 'fill' && 'object-fill',
           objectFit === 'none' && 'object-none',
           objectFit === 'scale-down' && 'object-scale-down'
         )}
-        onLoad={handleLoad}
         onError={handleError}
         {...props}
       />
-      
-      {/* Loading placeholder */}
-      {isLoading && (
-        <div className="absolute inset-0 bg-gray-200 animate-pulse flex items-center justify-center">
-          <div className="w-8 h-8 border-2 border-orange-500 border-t-transparent rounded-full animate-spin"></div>
-        </div>
-      )}
     </div>
   )
 } 
