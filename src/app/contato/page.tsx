@@ -17,25 +17,22 @@ import {
 	Clock, 
 	Send,
 	CheckCircle,
-	AlertCircle,
 	Car,
 	Users,
 	Calendar,
 	MessageSquare,
-	Loader2
+	ArrowRight
 } from 'lucide-react'
 
 // Schema de validação com Zod
 const contactSchema = z.object({
 	name: z.string().min(2, 'Nome deve ter pelo menos 2 caracteres'),
-	email: z.string().email('Email inválido'),
 	phone: z.string().min(10, 'Telefone deve ter pelo menos 10 dígitos'),
 	origin: z.string().min(2, 'Local de origem é obrigatório'),
 	destination: z.string().min(2, 'Destino é obrigatório'),
 	date: z.string().min(1, 'Data é obrigatória'),
 	time: z.string().min(1, 'Horário é obrigatório'),
 	passengers: z.string().min(1, 'Número de passageiros é obrigatório'),
-	vehicleType: z.string().min(1, 'Tipo de veículo é obrigatório'),
 	message: z.string().optional()
 })
 
@@ -43,7 +40,6 @@ type ContactForm = z.infer<typeof contactSchema>
 
 export default function ContatoPage() {
 	const [isSubmitting, setIsSubmitting] = useState(false)
-	const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
 	const {
 		register,
@@ -54,493 +50,362 @@ export default function ContatoPage() {
 		resolver: zodResolver(contactSchema)
 	})
 
-	const vehicleOptions = [
-		{ value: 'sedan', label: 'Sedan (até 4 passageiros)' },
-		{ value: 'suv', label: 'SUV (até 7 passageiros)' },
-		{ value: 'van', label: 'Van (até 14 passageiros)' }
-	]
-
 	const onSubmit = async (data: ContactForm) => {
 		setIsSubmitting(true)
-		setSubmitStatus('idle')
 
-		try {
-			// Usar configuração centralizada do Formspree
-			const formspreeUrl = config.formspree.url()
-			
-			const response = await fetch(formspreeUrl, {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-					'Accept': 'application/json'
-				},
-				body: JSON.stringify({
-					name: data.name,
-					email: data.email,
-					phone: data.phone,
-					origin: data.origin,
-					destination: data.destination,
-					date: data.date,
-					time: data.time,
-					passengers: data.passengers,
-					vehicleType: vehicleOptions.find(v => v.value === data.vehicleType)?.label,
-					message: data.message || 'Nenhuma observação',
-					_subject: `Nova solicitação de transfer: ${data.origin} → ${data.destination}`,
-					_replyto: data.email,
-					_format: 'plain'
-				}),
-			})
+		// Formatar mensagem para WhatsApp
+		const message = `
+🚖 *SOLICITAÇÃO DE TRANSFER*
 
-			if (response.ok) {
-				setSubmitStatus('success')
-				reset()
-				
-				// Também enviar para WhatsApp como backup
-				const message = `
-Olá! Gostaria de solicitar um orçamento:
+👤 *Nome:* ${data.name}
+📱 *Telefone:* ${data.phone}
 
-👤 Nome: ${data.name}
-📧 Email: ${data.email}
-📱 Telefone: ${data.phone}
-📍 Origem: ${data.origin}
-🎯 Destino: ${data.destination}
-📅 Data: ${data.date}
-⏰ Horário: ${data.time}
-👥 Passageiros: ${data.passengers}
-🚗 Veículo: ${vehicleOptions.find(v => v.value === data.vehicleType)?.label}
-${data.message ? `💬 Observações: ${data.message}` : ''}
-				`.trim()
+📍 *Origem:* ${data.origin}
+🎯 *Destino:* ${data.destination}
 
-				// Abrir WhatsApp após 2 segundos
-				setTimeout(() => {
-					const url = getWhatsAppUrl(message)
-					window.open(url, '_blank')
-				}, 2000)
-			} else {
-				const errorData = await response.json()
-				throw new Error(errorData.error || 'Erro ao enviar formulário')
-			}
-		} catch (error) {
-			console.error('Erro no envio:', error)
-			setSubmitStatus('error')
-		} finally {
+📅 *Data:* ${data.date}
+⏰ *Horário:* ${data.time}
+👥 *Passageiros:* ${data.passengers}
+
+${data.message ? `💬 *Observações:* ${data.message}` : ''}
+
+_Aguardo seu orçamento! 😊_
+		`.trim()
+
+		// Simular carregamento por 1 segundo para melhor UX
+		setTimeout(() => {
+			const url = getWhatsAppUrl(message)
+			window.open(url, '_blank')
 			setIsSubmitting(false)
-		}
+			reset()
+		}, 1000)
+	}
+
+	const popularRoutes = [
+		{ from: 'Aeroporto de Porto Seguro', to: 'Trancoso' },
+		{ from: 'Aeroporto de Porto Seguro', to: 'Arraial d&apos;Ajuda' },
+		{ from: 'Aeroporto de Porto Seguro', to: 'Caraíva' },
+		{ from: 'Aeroporto de Porto Seguro', to: 'Centro de Porto Seguro' },
+		{ from: 'Centro de Porto Seguro', to: 'Trancoso' },
+		{ from: 'Trancoso', to: 'Arraial d&apos;Ajuda' }
+	]
+
+	const fillRoute = (from: string, to: string) => {
+		const originInput = document.getElementById('origin') as HTMLInputElement
+		const destinationInput = document.getElementById('destination') as HTMLInputElement
+		
+		if (originInput) originInput.value = from
+		if (destinationInput) destinationInput.value = to
 	}
 
 	const contactInfo = [
 		{
 			icon: Phone,
-			title: 'Telefone / WhatsApp',
+			title: 'WhatsApp',
 			value: config.contact.phone,
-			link: `tel:+${config.contact.whatsapp}`
+			description: 'Resposta rápida garantida',
+			action: () => {
+				const url = getWhatsAppUrl('Olá! Gostaria de fazer um orçamento.')
+				window.open(url, '_blank')
+			}
 		},
 		{
 			icon: Mail,
 			title: 'Email',
 			value: config.contact.email,
-			link: `mailto:${config.contact.email}`
+			description: 'Para dúvidas e informações',
+			action: () => window.open(`mailto:${config.contact.email}`, '_blank')
 		},
 		{
 			icon: MapPin,
 			title: 'Localização',
 			value: 'Porto Seguro, Bahia',
-			link: '#'
+			description: 'Cobrimos toda a região',
+			action: () => {}
 		},
 		{
 			icon: Clock,
 			title: 'Atendimento',
-			value: '24 horas (Aeroporto)',
-			link: '#'
+			value: '24 horas',
+			description: 'Todos os dias da semana',
+			action: () => {}
 		}
 	]
 
 	return (
-		<div className="min-h-screen">
-			{/* Hero Section */}
-			<section className="relative bg-gradient-to-br from-teal-600 via-teal-500 to-teal-700 text-white py-16 lg:py-24">
-				<div className="absolute inset-0 bg-black/20"></div>
-				
-				<div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-					<div className="text-center">
-						<h1 className="font-poppins font-bold text-4xl md:text-5xl lg:text-6xl leading-tight mb-6">
-							Entre em <span className="text-orange-300">Contato</span>
-						</h1>
-						<p className="text-xl md:text-2xl text-teal-100 mb-8 max-w-4xl mx-auto leading-relaxed">
-							Estamos prontos para tornar sua viagem inesquecível. 
-							Solicite seu orçamento ou tire suas dúvidas conosco.
-						</p>
-					</div>
+		<div className="min-h-screen bg-gray-50 py-20">
+			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+				{/* Header */}
+				<div className="text-center mb-16">
+					<h1 className="font-poppins font-bold text-4xl md:text-5xl text-gray-900 mb-6">
+						Solicite seu Transfer
+					</h1>
+					<p className="text-xl text-gray-600 max-w-3xl mx-auto">
+						Preencha o formulário abaixo e seja redirecionado automaticamente para o WhatsApp 
+						com todas as informações organizadas. Resposta garantida em poucos minutos!
+					</p>
 				</div>
-			</section>
 
-			{/* Contact Form and Info */}
-			<section className="py-20 bg-gray-50">
-				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-					<div className="grid lg:grid-cols-3 gap-12">
-						{/* Contact Form */}
-						<div className="lg:col-span-2">
-							<Card className="hover:shadow-lg transition-shadow duration-300">
-								<CardHeader>
-									<CardTitle className="font-poppins text-2xl flex items-center gap-3">
-										<Send className="w-6 h-6 text-orange-600" />
-										Solicitar Orçamento
-									</CardTitle>
-									<p className="text-gray-600">
-										Preencha o formulário abaixo e receba um orçamento personalizado
-									</p>
-								</CardHeader>
-								<CardContent>
-									<form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-										{/* Nome e Email */}
-										<div className="grid md:grid-cols-2 gap-4">
-											<div>
-												<Label htmlFor="name">Nome Completo *</Label>
-												<Input
-													id="name"
-													{...register('name')}
-													placeholder="Seu nome completo"
-													className={errors.name ? 'border-red-500' : ''}
-												/>
-												{errors.name && (
-													<p className="text-red-500 text-sm mt-1 flex items-center gap-1">
-														<AlertCircle className="w-4 h-4" />
-														{errors.name.message}
-													</p>
-												)}
-											</div>
-											<div>
-												<Label htmlFor="email">Email *</Label>
-												<Input
-													id="email"
-													type="email"
-													{...register('email')}
-													placeholder="seu@email.com"
-													className={errors.email ? 'border-red-500' : ''}
-												/>
-												{errors.email && (
-													<p className="text-red-500 text-sm mt-1 flex items-center gap-1">
-														<AlertCircle className="w-4 h-4" />
-														{errors.email.message}
-													</p>
-												)}
-											</div>
+				<div className="grid lg:grid-cols-3 gap-8 mb-16">
+					{/* Formulário Principal */}
+					<div className="lg:col-span-2">
+						<Card className="shadow-xl">
+							<CardHeader className="bg-gradient-to-r from-orange-600 to-orange-500 text-white">
+								<CardTitle className="text-2xl flex items-center">
+									<MessageSquare className="w-6 h-6 mr-3" />
+									Formulário de Solicitação
+								</CardTitle>
+								<p className="text-orange-100">
+									Preencha os dados e seja redirecionado para o WhatsApp
+								</p>
+							</CardHeader>
+							<CardContent className="p-8">
+								<form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+									{/* Informações Pessoais */}
+									<div className="grid md:grid-cols-2 gap-6">
+										<div>
+											<Label htmlFor="name" className="text-gray-700 font-medium">
+												Nome Completo *
+											</Label>
+											<Input
+												id="name"
+												{...register('name')}
+												className="mt-2"
+												placeholder="Seu nome completo"
+											/>
+											{errors.name && (
+												<p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
+											)}
 										</div>
 
-										{/* Telefone */}
 										<div>
-											<Label htmlFor="phone">Telefone/WhatsApp *</Label>
+											<Label htmlFor="phone" className="text-gray-700 font-medium">
+												WhatsApp / Telefone *
+											</Label>
 											<Input
 												id="phone"
 												{...register('phone')}
+												className="mt-2"
 												placeholder="(73) 99999-9999"
-												className={errors.phone ? 'border-red-500' : ''}
 											/>
 											{errors.phone && (
-												<p className="text-red-500 text-sm mt-1 flex items-center gap-1">
-													<AlertCircle className="w-4 h-4" />
-													{errors.phone.message}
-												</p>
+												<p className="text-red-500 text-sm mt-1">{errors.phone.message}</p>
 											)}
 										</div>
+									</div>
 
-										{/* Origem e Destino */}
-										<div className="grid md:grid-cols-2 gap-4">
-											<div>
-												<Label htmlFor="origin">Origem *</Label>
-												<Input
-													id="origin"
-													{...register('origin')}
-													placeholder="Aeroporto, Hotel, etc."
-													className={errors.origin ? 'border-red-500' : ''}
-												/>
-												{errors.origin && (
-													<p className="text-red-500 text-sm mt-1 flex items-center gap-1">
-														<AlertCircle className="w-4 h-4" />
-														{errors.origin.message}
-													</p>
-												)}
-											</div>
-											<div>
-												<Label htmlFor="destination">Destino *</Label>
-												<Input
-													id="destination"
-													{...register('destination')}
-													placeholder="Trancoso, Arraial, etc."
-													className={errors.destination ? 'border-red-500' : ''}
-												/>
-												{errors.destination && (
-													<p className="text-red-500 text-sm mt-1 flex items-center gap-1">
-														<AlertCircle className="w-4 h-4" />
-														{errors.destination.message}
-													</p>
-												)}
-											</div>
-										</div>
-
-										{/* Data e Hora */}
-										<div className="grid md:grid-cols-2 gap-4">
-											<div>
-												<Label htmlFor="date">Data da Viagem *</Label>
-												<Input
-													id="date"
-													type="date"
-													{...register('date')}
-													className={errors.date ? 'border-red-500' : ''}
-												/>
-												{errors.date && (
-													<p className="text-red-500 text-sm mt-1 flex items-center gap-1">
-														<AlertCircle className="w-4 h-4" />
-														{errors.date.message}
-													</p>
-												)}
-											</div>
-											<div>
-												<Label htmlFor="time">Horário *</Label>
-												<Input
-													id="time"
-													type="time"
-													{...register('time')}
-													className={errors.time ? 'border-red-500' : ''}
-												/>
-												{errors.time && (
-													<p className="text-red-500 text-sm mt-1 flex items-center gap-1">
-														<AlertCircle className="w-4 h-4" />
-														{errors.time.message}
-													</p>
-												)}
-											</div>
-										</div>
-
-										{/* Passageiros e Veículo */}
-										<div className="grid md:grid-cols-2 gap-4">
-											<div>
-												<Label htmlFor="passengers">Número de Passageiros *</Label>
-												<select
-													id="passengers"
-													{...register('passengers')}
-													className={`w-full px-3 py-2 border rounded-md ${errors.passengers ? 'border-red-500' : 'border-gray-300'}`}
+									{/* Rotas Populares */}
+									<div className="bg-gray-50 p-4 rounded-lg">
+										<h3 className="font-semibold text-gray-800 mb-3">🔥 Rotas Populares (clique para preencher):</h3>
+										<div className="grid sm:grid-cols-2 gap-2">
+											{popularRoutes.map((route, index) => (
+												<button
+													key={index}
+													type="button"
+													onClick={() => fillRoute(route.from, route.to)}
+													className="text-left text-sm bg-white p-2 rounded border hover:bg-orange-50 hover:border-orange-300 transition-colors"
 												>
-													<option value="">Selecione</option>
-													{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14].map(num => (
-														<option key={num} value={num}>{num} passageiro{num > 1 ? 's' : ''}</option>
-													))}
-												</select>
-												{errors.passengers && (
-													<p className="text-red-500 text-sm mt-1 flex items-center gap-1">
-														<AlertCircle className="w-4 h-4" />
-														{errors.passengers.message}
-													</p>
-												)}
-											</div>
-											<div>
-												<Label htmlFor="vehicleType">Tipo de Veículo *</Label>
-												<select
-													id="vehicleType"
-													{...register('vehicleType')}
-													className={`w-full px-3 py-2 border rounded-md ${errors.vehicleType ? 'border-red-500' : 'border-gray-300'}`}
-												>
-													<option value="">Selecione</option>
-													{vehicleOptions.map(option => (
-														<option key={option.value} value={option.value}>
-															{option.label}
-														</option>
-													))}
-												</select>
-												{errors.vehicleType && (
-													<p className="text-red-500 text-sm mt-1 flex items-center gap-1">
-														<AlertCircle className="w-4 h-4" />
-														{errors.vehicleType.message}
-													</p>
-												)}
-											</div>
+													{route.from} → {route.to}
+												</button>
+											))}
 										</div>
+									</div>
 
-										{/* Mensagem */}
+									{/* Origem e Destino */}
+									<div className="grid md:grid-cols-2 gap-6">
 										<div>
-											<Label htmlFor="message">Observações (opcional)</Label>
-											<Textarea
-												id="message"
-												{...register('message')}
-												placeholder="Alguma informação adicional, necessidades especiais, etc."
-												rows={4}
+											<Label htmlFor="origin" className="text-gray-700 font-medium">
+												Local de Origem *
+											</Label>
+											<Input
+												id="origin"
+												{...register('origin')}
+												className="mt-2"
+												placeholder="Ex: Aeroporto de Porto Seguro"
 											/>
-										</div>
-
-										{/* Status Messages */}
-										{submitStatus === 'success' && (
-											<div className="bg-green-50 border border-green-200 rounded-lg p-4 flex items-center gap-3">
-												<CheckCircle className="w-5 h-5 text-green-600" />
-												<p className="text-green-800">
-													Solicitação enviada com sucesso! Você será redirecionado para o WhatsApp.
-												</p>
-											</div>
-										)}
-
-										{submitStatus === 'error' && (
-											<div className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-center gap-3">
-												<AlertCircle className="w-5 h-5 text-red-600" />
-												<p className="text-red-800">
-													Erro ao enviar solicitação. Tente novamente ou entre em contato via WhatsApp.
-												</p>
-											</div>
-										)}
-
-										{/* Submit Button */}
-										<Button 
-											type="submit" 
-											size="lg"
-											disabled={isSubmitting}
-											className="w-full bg-orange-600 hover:bg-orange-700 font-semibold"
-										>
-											{isSubmitting ? (
-												<>
-													<Loader2 className="w-5 h-5 mr-2 animate-spin" />
-													Enviando...
-												</>
-											) : (
-												<>
-													<Send className="w-5 h-5 mr-2" />
-													Solicitar Orçamento
-												</>
+											{errors.origin && (
+												<p className="text-red-500 text-sm mt-1">{errors.origin.message}</p>
 											)}
-										</Button>
-									</form>
-								</CardContent>
-							</Card>
-						</div>
+										</div>
 
-						{/* Contact Information */}
-						<div className="space-y-6">
-							<Card className="hover:shadow-lg transition-shadow duration-300">
-								<CardHeader>
-									<CardTitle className="font-poppins text-xl flex items-center gap-3">
-										<MessageSquare className="w-5 h-5 text-orange-600" />
-										Fale Conosco
-									</CardTitle>
-								</CardHeader>
-								<CardContent className="space-y-4">
-									{contactInfo.map((item, index) => (
-										<div key={index} className="flex items-start gap-3">
-											<div className="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center flex-shrink-0">
-												<item.icon className="w-5 h-5 text-orange-600" />
-											</div>
+										<div>
+											<Label htmlFor="destination" className="text-gray-700 font-medium">
+												Destino *
+											</Label>
+											<Input
+												id="destination"
+												{...register('destination')}
+												className="mt-2"
+												placeholder="Ex: Trancoso"
+											/>
+											{errors.destination && (
+												<p className="text-red-500 text-sm mt-1">{errors.destination.message}</p>
+											)}
+										</div>
+									</div>
+
+									{/* Data e Horário */}
+									<div className="grid md:grid-cols-3 gap-6">
+										<div>
+											<Label htmlFor="date" className="text-gray-700 font-medium">
+												Data da Viagem *
+											</Label>
+											<Input
+												id="date"
+												type="date"
+												{...register('date')}
+												className="mt-2"
+											/>
+											{errors.date && (
+												<p className="text-red-500 text-sm mt-1">{errors.date.message}</p>
+											)}
+										</div>
+
+										<div>
+											<Label htmlFor="time" className="text-gray-700 font-medium">
+												Horário *
+											</Label>
+											<Input
+												id="time"
+												type="time"
+												{...register('time')}
+												className="mt-2"
+											/>
+											{errors.time && (
+												<p className="text-red-500 text-sm mt-1">{errors.time.message}</p>
+											)}
+										</div>
+
+										<div>
+											<Label htmlFor="passengers" className="text-gray-700 font-medium">
+												Passageiros *
+											</Label>
+											<select
+												id="passengers"
+												{...register('passengers')}
+												className="mt-2 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+											>
+												<option value="">Selecione</option>
+												<option value="1">1 passageiro</option>
+												<option value="2">2 passageiros</option>
+												<option value="3">3 passageiros</option>
+												<option value="4">4 passageiros</option>
+												<option value="5">5 passageiros</option>
+												<option value="6">6 passageiros</option>
+												<option value="7+">7 ou mais</option>
+											</select>
+											{errors.passengers && (
+												<p className="text-red-500 text-sm mt-1">{errors.passengers.message}</p>
+											)}
+										</div>
+									</div>
+
+									{/* Observações */}
+									<div>
+										<Label htmlFor="message" className="text-gray-700 font-medium">
+											Observações (opcional)
+										</Label>
+										<Textarea
+											id="message"
+											{...register('message')}
+											className="mt-2"
+											placeholder="Informações adicionais sobre sua viagem..."
+											rows={4}
+										/>
+									</div>
+
+									{/* Botão de Envio */}
+									<Button
+										type="submit"
+										disabled={isSubmitting}
+										className="w-full bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 text-white font-semibold py-4 text-lg transition-all duration-300 transform hover:scale-105"
+									>
+										{isSubmitting ? (
+											<>
+												<div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-3"></div>
+												Preparando WhatsApp...
+											</>
+										) : (
+											<>
+												<MessageSquare className="w-5 h-5 mr-3" />
+												Enviar via WhatsApp
+												<ArrowRight className="w-5 h-5 ml-3" />
+											</>
+										)}
+									</Button>
+
+									{/* Aviso */}
+									<div className="bg-green-50 border border-green-200 rounded-lg p-4">
+										<div className="flex items-start">
+											<CheckCircle className="w-5 h-5 text-green-600 mt-0.5 mr-3" />
 											<div>
-												<h4 className="font-semibold text-gray-900">{item.title}</h4>
-												{item.link !== '#' ? (
-													<a 
-														href={item.link}
-														className="text-orange-600 hover:text-orange-700 transition-colors"
-													>
-														{item.value}
-													</a>
-												) : (
-													<p className="text-gray-600">{item.value}</p>
-												)}
+												<h4 className="font-semibold text-green-800">Como funciona:</h4>
+												<p className="text-green-700 text-sm mt-1">
+													Ao clicar em &quot;Enviar via WhatsApp&quot;, você será redirecionado automaticamente 
+													para o WhatsApp com uma mensagem organizada contendo todos os dados preenchidos. 
+													Basta enviar para receber seu orçamento!
+												</p>
 											</div>
 										</div>
-									))}
-								</CardContent>
-							</Card>
-
-							{/* Quick Actions */}
-							<Card className="hover:shadow-lg transition-shadow duration-300">
-								<CardHeader>
-									<CardTitle className="font-poppins text-xl">Ações Rápidas</CardTitle>
-								</CardHeader>
-								<CardContent className="space-y-3">
-									<Button 
-										className="w-full bg-green-600 hover:bg-green-700"
-										onClick={() => window.open(getWhatsAppUrl(), '_blank')}
-									>
-										<Phone className="w-4 h-4 mr-2" />
-										WhatsApp Direto
-									</Button>
-									<Button 
-										variant="outline"
-										className="w-full border-2 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white transition-colors"
-										onClick={() => window.open(`tel:+${config.contact.whatsapp}`, '_self')}
-									>
-										<Phone className="w-4 h-4 mr-2" />
-										Ligar Agora
-									</Button>
-									<Button 
-										variant="outline"
-										className="w-full border-2 border-teal-600 text-teal-600 hover:bg-teal-600 hover:text-white transition-colors"
-										onClick={() => window.open(`mailto:${config.contact.email}`, '_self')}
-									>
-										<Mail className="w-4 h-4 mr-2" />
-										Enviar Email
-									</Button>
-								</CardContent>
-							</Card>
-
-							{/* Business Hours */}
-							<Card className="hover:shadow-lg transition-shadow duration-300">
-								<CardHeader>
-									<CardTitle className="font-poppins text-xl flex items-center gap-3">
-										<Clock className="w-5 h-5 text-orange-600" />
-										Horários
-									</CardTitle>
-								</CardHeader>
-								<CardContent className="space-y-2 text-sm">
-									<div className="flex justify-between">
-										<span className="text-gray-600">Transfer Aeroporto:</span>
-										<span className="font-semibold">24 horas</span>
 									</div>
-									<div className="flex justify-between">
-										<span className="text-gray-600">Atendimento WhatsApp:</span>
-										<span className="font-semibold">6h às 22h</span>
-									</div>
-									<div className="flex justify-between">
-										<span className="text-gray-600">Transfers Locais:</span>
-										<span className="font-semibold">5h às 23h</span>
-									</div>
-									<div className="flex justify-between">
-										<span className="text-gray-600">Emergências:</span>
-										<span className="font-semibold">24 horas</span>
-									</div>
-								</CardContent>
-							</Card>
-						</div>
-					</div>
-				</div>
-			</section>
-
-			{/* Map Section (Placeholder) */}
-			<section className="py-20">
-				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-					<div className="text-center mb-12">
-						<h2 className="font-poppins font-bold text-3xl md:text-4xl text-gray-900 mb-4">
-							Nossa Localização
-						</h2>
-						<p className="text-xl text-gray-600">
-							Atendemos toda a região da Costa do Descobrimento
-						</p>
+								</form>
+							</CardContent>
+						</Card>
 					</div>
 
-					<Card className="overflow-hidden">
-						<div className="h-96 bg-gradient-to-br from-orange-100 to-teal-100 flex items-center justify-center">
-							<div className="text-center">
-								<MapPin className="w-16 h-16 text-orange-600 mx-auto mb-4" />
-								<h3 className="font-poppins font-bold text-2xl text-gray-900 mb-2">
-									Porto Seguro, Bahia
-								</h3>
-								<p className="text-gray-600 mb-4">
-									Costa do Descobrimento - Região Turística
+					{/* Informações de Contato */}
+					<div className="space-y-6">
+						<Card className="shadow-lg">
+							<CardHeader>
+								<CardTitle className="text-xl text-gray-900">
+									Outras Formas de Contato
+								</CardTitle>
+							</CardHeader>
+							<CardContent className="space-y-6">
+								{contactInfo.map((item, index) => (
+									<div
+										key={index}
+										onClick={item.action}
+										className={`flex items-start p-4 rounded-lg transition-all duration-300 ${
+											item.title === 'WhatsApp' || item.title === 'Email'
+												? 'bg-orange-50 hover:bg-orange-100 cursor-pointer border border-orange-200'
+												: 'bg-gray-50 border border-gray-200'
+										}`}
+									>
+										<item.icon className="w-6 h-6 text-orange-600 mt-1 mr-4" />
+										<div className="flex-1">
+											<h3 className="font-semibold text-gray-900">{item.title}</h3>
+											<p className="text-gray-800 font-medium">{item.value}</p>
+											<p className="text-sm text-gray-600">{item.description}</p>
+										</div>
+									</div>
+								))}
+							</CardContent>
+						</Card>
+
+						{/* Destaque WhatsApp */}
+						<Card className="shadow-lg bg-gradient-to-br from-green-500 to-green-600 text-white">
+							<CardContent className="p-6 text-center">
+								<MessageSquare className="w-12 h-12 mx-auto mb-4" />
+								<h3 className="font-bold text-xl mb-2">WhatsApp Direto</h3>
+								<p className="text-green-100 mb-4">
+									Precisa de algo rápido? Fale conosco agora mesmo!
 								</p>
-								<Button 
-									className="bg-orange-600 hover:bg-orange-700"
-									onClick={() => window.open('https://maps.google.com/?q=Porto+Seguro+Bahia', '_blank')}
+								<Button
+									onClick={() => {
+										const url = getWhatsAppUrl('Olá! Preciso de informações sobre transfer.')
+										window.open(url, '_blank')
+									}}
+									className="bg-white text-green-600 hover:bg-gray-100 font-semibold"
 								>
-									<MapPin className="w-4 h-4 mr-2" />
-									Ver no Google Maps
+									<Phone className="w-4 h-4 mr-2" />
+									Conversar Agora
 								</Button>
-							</div>
-						</div>
-					</Card>
+							</CardContent>
+						</Card>
+					</div>
 				</div>
-			</section>
+			</div>
 		</div>
 	)
 }
