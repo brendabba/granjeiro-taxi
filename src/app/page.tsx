@@ -215,7 +215,7 @@ _Aguardo seu orçamento! 😊_
 	return (
 		<div className="min-h-screen">
 			{/* Hero Section */}
-			<section className="relative text-white py-20 lg:py-32 overflow-hidden">
+			<section id="inicio" className="relative text-white py-20 lg:py-32 overflow-hidden">
 				{/* Hero Background Image */}
 				<div className="absolute inset-0 z-0">
 					<img
@@ -242,7 +242,7 @@ _Aguardo seu orçamento! 😊_
 							</p>
 							<div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
 								<Button
-									onClick={() => document.getElementById('formulario')?.scrollIntoView({ behavior: 'smooth' })}
+									onClick={() => document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })}
 									className="bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-white font-semibold px-8 py-4 text-lg transition-all duration-300 transform hover:scale-105"
 								>
 									<Calendar className="w-5 h-5 mr-3" />
@@ -275,7 +275,7 @@ _Aguardo seu orçamento! 😊_
 			</section>
 
 			{/* Popular Routes Section */}
-			<section className="py-20 bg-white">
+			<section id="rotas" className="py-20 bg-white">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<div className="text-center mb-16">
 						<h2 className="font-poppins font-bold text-3xl md:text-4xl text-gray-900 mb-4">
@@ -316,7 +316,7 @@ _Aguardo seu orçamento! 😊_
 									<Button
 										onClick={() => {
 											fillRoute(route.from, route.to)
-											document.getElementById('formulario')?.scrollIntoView({ behavior: 'smooth' })
+											document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })
 										}}
 										className="w-full bg-orange-600 hover:bg-orange-700 text-white"
 									>
@@ -330,7 +330,7 @@ _Aguardo seu orçamento! 😊_
 			</section>
 
 			{/* Services Section */}
-			<section className="py-20 bg-gray-50">
+			<section id="servicos" className="py-20 bg-gray-50">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<div className="text-center mb-16">
 						<h2 className="font-poppins font-bold text-3xl md:text-4xl text-gray-900 mb-4">
@@ -364,7 +364,7 @@ _Aguardo seu orçamento! 😊_
 			</section>
 
 			{/* About Section */}
-			<section className="py-20 bg-white">
+			<section id="sobre" className="py-20 bg-white">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<div className="grid lg:grid-cols-2 gap-12 items-center">
 						<div>
@@ -406,7 +406,7 @@ _Aguardo seu orçamento! 😊_
 			</section>
 
 			{/* Contact Form Section */}
-			<section id="formulario" className="py-20 bg-gray-50">
+			<section id="contato" className="py-20 bg-gray-50">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<div className="text-center mb-16">
 						<h2 className="font-poppins font-bold text-3xl md:text-4xl text-gray-900 mb-4">

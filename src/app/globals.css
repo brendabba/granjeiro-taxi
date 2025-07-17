@@ -81,6 +81,16 @@ body {
   background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
 }
 
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Scroll offset for fixed header */
+section[id] {
+  scroll-margin-top: 4rem;
+}
+
 .text-shadow {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }

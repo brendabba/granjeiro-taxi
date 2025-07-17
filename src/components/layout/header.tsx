@@ -10,12 +10,23 @@ export function Header() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false)
 
 	const navigation = [
-		{ name: 'Início', href: '/' },
-		{ name: 'Serviços', href: '/servicos' },
-		{ name: 'Rotas', href: '/rotas' },
-		{ name: 'Sobre Nós', href: '/sobre' },
-		{ name: 'Contato', href: '/contato' },
+		{ name: 'Início', href: '#inicio' },
+		{ name: 'Rotas', href: '#rotas' },
+		{ name: 'Serviços', href: '#servicos' },
+		{ name: 'Sobre Nós', href: '#sobre' },
+		{ name: 'Contato', href: '#contato' },
 	]
+
+	const handleNavClick = (href: string) => {
+		setIsMenuOpen(false)
+		
+		if (href.startsWith('#')) {
+			const element = document.getElementById(href.substring(1))
+			if (element) {
+				element.scrollIntoView({ behavior: 'smooth' })
+			}
+		}
+	}
 
 	const handleWhatsAppClick = () => {
 		const url = getWhatsAppUrl('Olá! Gostaria de fazer um orçamento para uma viagem.')
@@ -41,13 +52,13 @@ export function Header() {
 					{/* Desktop Navigation */}
 					<nav className="hidden md:flex space-x-8">
 						{navigation.map((item) => (
-							<Link
+							<button
 								key={item.name}
-								href={item.href}
+								onClick={() => handleNavClick(item.href)}
 								className="text-gray-700 hover:text-orange-600 font-medium transition-colors duration-200"
 							>
 								{item.name}
-							</Link>
+							</button>
 						))}
 					</nav>
 
@@ -82,14 +93,13 @@ export function Header() {
 					<div className="md:hidden">
 						<div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-gray-100">
 							{navigation.map((item) => (
-								<Link
+								<button
 									key={item.name}
-									href={item.href}
-									className="block px-3 py-2 text-gray-700 hover:text-orange-600 font-medium transition-colors duration-200"
-									onClick={() => setIsMenuOpen(false)}
+									onClick={() => handleNavClick(item.href)}
+									className="block w-full text-left px-3 py-2 text-gray-700 hover:text-orange-600 font-medium transition-colors duration-200"
 								>
 									{item.name}
-								</Link>
+								</button>
 							))}
 							<div className="pt-4">
 								<Button
