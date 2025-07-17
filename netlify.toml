@@ -1,18 +1,38 @@
 [build]
-  command = "npm run build"
-  publish = "dist/client"
+  publish = "out"
+  command = "npm run build:static"
 
-[dev]
-  command = "npm run dev"
+[build.environment]
+  NODE_VERSION = "18"
 
-# Set immutable caching for static files, because they have fingerprinted filenames
+# Redirects para SPA (Single Page Application)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Headers de segurança
 [[headers]]
-for = "/assets/*"
-[headers.values]
-"Cache-Control" = "public, max-age=31560000, immutable"
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
 
-# These are only used to set up the template, and are not used in the build
-# If you want to update the real values, change them in the site UI or CLI
-[template.environment]
-PUBLIC_STORE_DOMAIN = "Store domain - set this to 'mock.shop' to try the demo site"
-SESSION_SECRET = "Session secret - set this to a random value for production"
+# Cache para assets estáticos
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Cache para imagens
+[[headers]]
+  for = "*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "*.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000" 
