@@ -6,25 +6,60 @@ const path = require('path');
 
 console.log('🚀 Iniciando build personalizado para Netlify...');
 
+function runCommand(command, description) {
+  console.log(`📦 ${description}...`);
+  try {
+    execSync(command, { stdio: 'inherit', timeout: 300000 }); // 5 min timeout
+    return true;
+  } catch (error) {
+    console.log(`❌ Erro em: ${description}`);
+    console.log(`Comando: ${command}`);
+    return false;
+  }
+}
+
 try {
   // Verificar se package.json existe
   if (!fs.existsSync(path.join(process.cwd(), 'package.json'))) {
     throw new Error('package.json não encontrado!');
   }
 
-  // Instalar todas as dependências de forma limpa
-  console.log('📦 Instalando dependências...');
-  execSync('npm install', { stdio: 'inherit' });
+  // Limpar cache do npm
+  console.log('🧹 Limpando cache do npm...');
+  try {
+    execSync('npm cache clean --force', { stdio: 'ignore' });
+  } catch (error) {
+    console.log('⚠️ Não foi possível limpar o cache');
+  }
+
+  // Tentar npm ci primeiro, depois npm install como fallback
+  let installed = false;
+  
+  if (fs.existsSync('package-lock.json')) {
+    console.log('📦 Tentando npm ci...');
+    installed = runCommand('npm ci --prefer-offline --no-audit', 'Instalação com npm ci');
+  }
+  
+  if (!installed) {
+    console.log('📦 Fallback para npm install...');
+    installed = runCommand('npm install --prefer-offline --no-audit', 'Instalação com npm install');
+  }
+  
+  if (!installed) {
+    throw new Error('Falha na instalação de dependências');
+  }
 
   console.log('✅ Dependências instaladas com sucesso!');
 
   // Executar setup para modo estático
-  console.log('⚙️ Configurando modo estático...');
-  execSync('npm run setup:static', { stdio: 'inherit' });
+  if (!runCommand('npm run setup:static', 'Configuração do modo estático')) {
+    throw new Error('Falha na configuração estática');
+  }
 
   // Executar build
-  console.log('🔨 Executando build...');
-  execSync('npm run build', { stdio: 'inherit' });
+  if (!runCommand('npm run build', 'Build do projeto')) {
+    throw new Error('Falha no build');
+  }
 
   // Verificar se a pasta out foi criada
   if (!fs.existsSync(path.join(process.cwd(), 'out'))) {

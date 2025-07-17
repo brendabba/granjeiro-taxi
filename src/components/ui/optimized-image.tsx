@@ -1,8 +1,8 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
-import { useIntersectionObserver } from '@/hooks/use-intersection-observer'
-import { LoadingSkeleton } from '@/components/ui/loading'
+import Image from 'next/image'
+import { useState } from 'react'
+import { cn } from '@/lib/utils'
 
 interface OptimizedImageProps {
   src: string
@@ -10,8 +10,13 @@ interface OptimizedImageProps {
   width?: number
   height?: number
   className?: string
+  fill?: boolean
   priority?: boolean
-  placeholder?: string
+  placeholder?: 'blur' | 'empty'
+  blurDataURL?: string
+  sizes?: string
+  quality?: number
+  objectFit?: 'contain' | 'cover' | 'fill' | 'none' | 'scale-down'
 }
 
 export function OptimizedImage({
@@ -19,79 +24,70 @@ export function OptimizedImage({
   alt,
   width,
   height,
-  className = '',
+  className,
+  fill = false,
   priority = false,
-  placeholder = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI0YzRjRGNiIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0ibW9ub3NwYWNlIiBmb250LXNpemU9IjE0cHgiIGZpbGw9IiM5Q0EzQUYiPkNhcnJlZ2FuZG8uLi48L3RleHQ+PC9zdmc+'
+  placeholder = 'empty',
+  blurDataURL,
+  sizes = '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw',
+  quality = 85,
+  objectFit = 'cover',
+  ...props
 }: OptimizedImageProps) {
-  const [isLoaded, setIsLoaded] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
   const [hasError, setHasError] = useState(false)
-  const [currentSrc, setCurrentSrc] = useState(placeholder)
-  const [isVisible, setIsVisible] = useState(priority)
-  const divRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    if (!priority && divRef.current) {
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true)
-            observer.disconnect()
-          }
-        },
-        { threshold: 0.1 }
-      )
-      
-      observer.observe(divRef.current)
-      
-      return () => observer.disconnect()
-    }
-  }, [priority])
+  const handleLoad = () => {
+    setIsLoading(false)
+  }
 
-  // Load image when it becomes visible or if it has priority
-  useEffect(() => {
-    if ((isVisible || priority) && !isLoaded && !hasError) {
-      const img = new Image()
-      
-      img.onload = () => {
-        setCurrentSrc(src)
-        setIsLoaded(true)
-      }
-      
-      img.onerror = () => {
-        setHasError(true)
-      }
-      
-      img.src = src
-    }
-  }, [isVisible, priority, src, isLoaded, hasError])
+  const handleError = () => {
+    setIsLoading(false)
+    setHasError(true)
+  }
+
+  if (hasError) {
+    return (
+      <div className={cn(
+        'flex items-center justify-center bg-gray-200 text-gray-500',
+        className
+      )}>
+        <span className="text-sm">Imagem não disponível</span>
+      </div>
+    )
+  }
 
   return (
-    <div
-      ref={divRef}
-      className={`relative overflow-hidden ${className}`}
-      style={{ width, height }}
-    >
-      {!isLoaded && !hasError && (
-        <LoadingSkeleton className="absolute inset-0 w-full h-full" />
-      )}
-      
-      <img
-        src={currentSrc}
+    <div className={cn('relative overflow-hidden', className)}>
+      <Image
+        src={src}
         alt={alt}
-        width={width}
-        height={height}
-        className={`transition-opacity duration-300 ${
-          isLoaded ? 'opacity-100' : 'opacity-0'
-        } ${className}`}
-        loading={priority ? 'eager' : 'lazy'}
-        decoding="async"
-        onLoad={() => setIsLoaded(true)}
-        onError={() => setHasError(true)}
+        width={fill ? undefined : width}
+        height={fill ? undefined : height}
+        fill={fill}
+        priority={priority}
+        placeholder={placeholder}
+        blurDataURL={blurDataURL}
+        sizes={sizes}
+        quality={quality}
+        className={cn(
+          'transition-opacity duration-300',
+          isLoading ? 'opacity-0' : 'opacity-100',
+          objectFit === 'cover' && 'object-cover',
+          objectFit === 'contain' && 'object-contain',
+          objectFit === 'fill' && 'object-fill',
+          objectFit === 'none' && 'object-none',
+          objectFit === 'scale-down' && 'object-scale-down'
+        )}
+        onLoad={handleLoad}
+        onError={handleError}
+        {...props}
       />
       
-      {hasError && (
-        <div className="absolute inset-0 flex items-center justify-center bg-gray-100 text-gray-500 text-sm">
-          Erro ao carregar imagem
+      {/* Loading placeholder */}
+      {isLoading && (
+        <div className="absolute inset-0 bg-gray-200 animate-pulse flex items-center justify-center">
+          <div className="w-8 h-8 border-2 border-orange-500 border-t-transparent rounded-full animate-spin"></div>
         </div>
       )}
     </div>

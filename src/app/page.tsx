@@ -3,6 +3,8 @@
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { OptimizedImage } from '@/components/ui/optimized-image'
+import { getImageUrl, generateBlurDataURL } from '@/lib/images'
 import { 
 	Shield, 
 	Clock, 
@@ -21,7 +23,7 @@ export default function HomePage() {
 		{
 			icon: Shield,
 			title: 'Segurança Garantida',
-			description: 'Motoristas experientes, veículos com seguro total e monitoramento 24h'
+			description: 'Motoristas experientes, Chevrolet Spin com seguro total e monitoramento 24h'
 		},
 		{
 			icon: Clock,
@@ -34,9 +36,9 @@ export default function HomePage() {
 			description: 'Mais de 2.000 avaliações positivas no Google'
 		},
 		{
-			icon: Users,
-			title: 'Conhecimento Local',
-			description: 'Motoristas nativos da região com dicas exclusivas'
+			icon: Car,
+			title: 'Frota Chevrolet Spin',
+			description: 'Veículos modernos para até 6 passageiros com todo conforto'
 		}
 	]
 
@@ -46,21 +48,24 @@ export default function HomePage() {
 			to: 'Trancoso',
 			duration: '45 min',
 			price: 'A partir de R$ 120',
-			image: '/images/trancoso.jpg'
+			image: getImageUrl('destinations', 'trancoso', true),
+			description: 'Quadrado histórico e praias paradisíacas'
 		},
 		{
 			from: 'Aeroporto',
 			to: 'Arraial d\'Ajuda',
 			duration: '35 min',
 			price: 'A partir de R$ 100',
-			image: '/images/arraial.jpg'
+			image: getImageUrl('destinations', 'arraial', true),
+			description: 'Centro histórico e praias deslumbrantes'
 		},
 		{
 			from: 'Aeroporto',
 			to: 'Caraíva',
 			duration: '1h 30min',
 			price: 'A partir de R$ 200',
-			image: '/images/caraiva.jpg'
+			image: getImageUrl('destinations', 'caraiva', true),
+			description: 'Vila rústica e natureza preservada'
 		}
 	]
 
@@ -78,16 +83,33 @@ export default function HomePage() {
 				<div className="absolute inset-0 bg-black/20"></div>
 				<div className="absolute inset-0 bg-[url('/hero-pattern.svg')] opacity-10"></div>
 				
-				<div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+				{/* Hero Background Image */}
+				<div className="absolute inset-0 z-0">
+					<OptimizedImage
+						src={getImageUrl('hero', 'beach', true)}
+						alt="Porto Seguro - Costa do Descobrimento"
+						fill
+						priority
+						objectFit="cover"
+						className="opacity-30"
+						placeholder="blur"
+						blurDataURL={generateBlurDataURL()}
+					/>
+				</div>
+				
+				<div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
 					<div className="grid lg:grid-cols-2 gap-12 items-center">
 						<div className="text-center lg:text-left">
 							<h1 className="font-poppins font-bold text-4xl md:text-5xl lg:text-6xl leading-tight mb-6">
 								Transfer Seguro e Pontual em{' '}
 								<span className="text-yellow-300">Porto Seguro</span>
 							</h1>
-							<p className="text-xl md:text-2xl text-orange-100 mb-8 leading-relaxed">
+							<p className="text-xl md:text-2xl text-orange-100 mb-6 leading-relaxed">
 								Conectamos você aos destinos mais incríveis da Costa do Descobrimento 
-								com conforto, segurança e o melhor atendimento da região.
+								com nossa frota exclusiva de <strong>Chevrolet Spin</strong>.
+							</p>
+							<p className="text-lg text-orange-200 mb-8">
+								Conforto, segurança e o melhor atendimento da região com veículos para até 6 passageiros.
 							</p>
 							
 							<div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
@@ -108,38 +130,6 @@ export default function HomePage() {
 									<ArrowRight className="w-5 h-5 ml-3" />
 								</Button>
 							</div>
-
-							<div className="flex items-center justify-center lg:justify-start gap-6 mt-8 text-orange-100">
-								<div className="flex items-center gap-2">
-									<CheckCircle className="w-5 h-5 text-green-400" />
-									<span>Disponível 24h</span>
-								</div>
-								<div className="flex items-center gap-2">
-									<CheckCircle className="w-5 h-5 text-green-400" />
-									<span>Preços Transparentes</span>
-								</div>
-							</div>
-						</div>
-
-						<div className="relative lg:h-96">
-							<div className="absolute inset-0 bg-gradient-to-r from-orange-400 to-yellow-400 rounded-2xl transform rotate-3"></div>
-							<div className="relative bg-white rounded-2xl p-8 transform -rotate-3 hover:rotate-0 transition-transform duration-500">
-								<div className="text-center text-gray-900">
-									<Car className="w-16 h-16 text-orange-600 mx-auto mb-4" />
-									<h3 className="font-poppins font-bold text-2xl mb-4">
-										Mais de 5.000 viagens realizadas
-									</h3>
-									<div className="flex justify-center items-center gap-1 mb-4">
-										{[...Array(5)].map((_, i) => (
-											<Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-										))}
-										<span className="ml-2 font-semibold">4.9/5</span>
-									</div>
-									<p className="text-gray-600">
-										A confiança dos nossos clientes é nossa maior conquista
-									</p>
-								</div>
-							</div>
 						</div>
 					</div>
 				</div>
@@ -154,7 +144,7 @@ export default function HomePage() {
 						</h2>
 						<p className="text-xl text-gray-600 max-w-3xl mx-auto">
 							Mais de 10 anos de experiência levando turistas e moradores aos 
-							principais destinos da Costa do Descobrimento com total segurança.
+							principais destinos da Costa do Descobrimento com nossa frota Chevrolet Spin.
 						</p>
 					</div>
 
@@ -184,24 +174,37 @@ export default function HomePage() {
 							Rotas Mais Populares
 						</h2>
 						<p className="text-xl text-gray-600">
-							Conectamos você aos destinos mais procurados da região
+							Conectamos você aos destinos mais procurados da região com nosso Chevrolet Spin
 						</p>
 					</div>
 
 					<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 						{routes.map((route, index) => (
 							<Card key={index} className="overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-								<div className="relative h-48 bg-gradient-to-r from-orange-400 to-orange-600">
-									<div className="absolute inset-0 bg-black/20"></div>
+								<div className="relative h-48">
+									<OptimizedImage
+										src={route.image}
+										alt={`${route.to} - Destino turístico`}
+										fill
+										objectFit="cover"
+										placeholder="blur"
+										blurDataURL={generateBlurDataURL()}
+									/>
+									<div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
 									<div className="absolute bottom-4 left-4 text-white">
 										<MapPin className="w-5 h-5 inline mr-2" />
 										<span className="font-semibold">{route.from} → {route.to}</span>
+										<p className="text-sm mt-1 opacity-90">{route.description}</p>
 									</div>
 								</div>
 								<CardContent className="p-6">
 									<div className="flex justify-between items-center mb-4">
 										<span className="text-gray-600">Duração: {route.duration}</span>
 										<span className="font-bold text-orange-600 text-lg">{route.price}</span>
+									</div>
+									<div className="flex items-center gap-2 text-sm text-gray-500 mb-4">
+										<Car className="w-4 h-4" />
+										<span>Chevrolet Spin - Até 6 passageiros</span>
 									</div>
 									<Button 
 										onClick={handleWhatsAppClick}
@@ -224,7 +227,7 @@ export default function HomePage() {
 						Pronto para sua próxima aventura?
 					</h2>
 					<p className="text-xl text-teal-100 mb-8 leading-relaxed">
-						Entre em contato conosco e garante já o seu transfer. 
+						Entre em contato conosco e garanta já o seu transfer com nosso Chevrolet Spin. 
 						Atendimento personalizado e preços especiais para grupos.
 					</p>
 					<div className="flex flex-col sm:flex-row gap-4 justify-center">
