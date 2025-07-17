@@ -206,7 +206,7 @@ _Aguardo seu orçamento! 😊_
 	}
 
 	const handleWhatsAppClick = () => {
-		const whatsappNumber = '5573999999999'
+		const whatsappNumber = '5573999384732'
 		const message = 'Olá! Gostaria de fazer um orçamento para uma viagem.'
 		const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`
 		window.open(url, '_blank')
@@ -475,7 +475,7 @@ _Aguardo seu orçamento! 😊_
 												id="phone"
 												{...register('phone')}
 												className="mt-2"
-												placeholder="(73) 99999-9999"
+												placeholder="(73) 99938-4732"
 											/>
 											{errors.phone && (
 												<p className="text-red-500 text-sm mt-1">{errors.phone.message}</p>

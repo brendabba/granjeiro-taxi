@@ -10,21 +10,28 @@ export const config = {
 
 	// Contato
 	contact: {
-		whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '5573999999999',
-		email: process.env.NEXT_PUBLIC_EMAIL || 'contato@taxigranjeiro.com.br',
-		phone: process.env.NEXT_PUBLIC_PHONE || '(73) 99999-9999'
+		phone: '(73) 99938-4732',
+		whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '5573999384732',
+		email: 'contato@portotaxi.com.br',
+		address: 'Porto Seguro - BA'
 	},
 
 	// Site
 	site: {
-		url: process.env.NEXT_PUBLIC_SITE_URL || 'https://taxigranjeiro.com.br',
-		name: process.env.NEXT_PUBLIC_SITE_NAME || 'Táxi Granjeiro',
-		description: 'Táxi 24h, transfer seguro e passeios turísticos em Porto Seguro, Trancoso, Arraial d\'Ajuda e Caraíva'
+		name: 'Porto Táxi',
+		description: 'Serviço de táxi 24 horas, transfer para aeroporto, passeios turísticos e viagens personalizadas em Porto Seguro e região.',
+		url: process.env.NEXT_PUBLIC_SITE_URL || 'https://portotaxi.netlify.app',
+		locale: 'pt-BR',
 	},
 
 	// Google Analytics
 	analytics: {
 		gaId: process.env.NEXT_PUBLIC_GA_ID || ''
+	},
+
+	business: {
+		hours: '24 horas',
+		coverage: 'Porto Seguro e região'
 	}
 }
 

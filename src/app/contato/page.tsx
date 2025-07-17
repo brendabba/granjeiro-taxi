@@ -186,7 +186,7 @@ _Aguardo seu orçamento! 😊_
 												id="phone"
 												{...register('phone')}
 												className="mt-2"
-												placeholder="(73) 99999-9999"
+												placeholder="(73) 99938-4732"
 											/>
 											{errors.phone && (
 												<p className="text-red-500 text-sm mt-1">{errors.phone.message}</p>

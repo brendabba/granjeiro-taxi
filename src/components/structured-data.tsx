@@ -17,7 +17,7 @@ export function StructuredData({ type, data }: StructuredDataProps) {
 				logo: 'https://taxigranjeiro.com.br/icon-512.png',
 				contactPoint: {
 					'@type': 'ContactPoint',
-					telephone: '+55-73-99999-9999',
+					telephone: '+55-73-99938-4732',
 					contactType: 'customer service',
 					availableLanguage: 'Portuguese',
 					areaServed: 'BR'
@@ -30,7 +30,7 @@ export function StructuredData({ type, data }: StructuredDataProps) {
 				},
 				sameAs: [
 					'https://www.instagram.com/taxigranjeiro',
-					'https://wa.me/5573999999999'
+					'https://wa.me/5573999384732'
 				]
 			}
 			break
@@ -44,7 +44,7 @@ export function StructuredData({ type, data }: StructuredDataProps) {
 				image: 'https://taxigranjeiro.com.br/icon-512.png',
 				description: 'Transfer seguro e pontual em Porto Seguro, Trancoso, Arraial d\'Ajuda e Caraíva',
 				url: 'https://taxigranjeiro.com.br',
-				telephone: '+55-73-99999-9999',
+				telephone: '+55-73-99938-4732',
 				priceRange: 'R$ 20 - R$ 300',
 				address: {
 					'@type': 'PostalAddress',
