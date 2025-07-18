@@ -1,14 +1,7 @@
 'use client'
 
-import { useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import * as z from 'zod'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
-import { Label } from '@/components/ui/label'
 import { config, getWhatsAppUrl } from '@/lib/config'
 import { 
 	Shield, 
@@ -31,32 +24,7 @@ import {
 	HeadphonesIcon
 } from 'lucide-react'
 
-// Schema de validação para o formulário
-const contactSchema = z.object({
-	name: z.string().min(2, 'Nome deve ter pelo menos 2 caracteres'),
-	phone: z.string().min(10, 'Telefone deve ter pelo menos 10 dígitos'),
-	origin: z.string().min(2, 'Local de origem é obrigatório'),
-	destination: z.string().min(2, 'Destino é obrigatório'),
-	date: z.string().min(1, 'Data é obrigatória'),
-	time: z.string().min(1, 'Horário é obrigatório'),
-	passengers: z.string().min(1, 'Número de passageiros é obrigatório'),
-	message: z.string().optional()
-})
-
-type ContactForm = z.infer<typeof contactSchema>
-
 export default function HomePage() {
-	const [isSubmitting, setIsSubmitting] = useState(false)
-
-	const {
-		register,
-		handleSubmit,
-		formState: { errors },
-		reset,
-		setValue
-	} = useForm<ContactForm>({
-		resolver: zodResolver(contactSchema)
-	})
 
 	const benefits = [
 		{
@@ -167,47 +135,7 @@ export default function HomePage() {
 		}
 	]
 
-	const onSubmit = async (data: ContactForm) => {
-		setIsSubmitting(true)
 
-		// Formatar mensagem para WhatsApp
-		const message = `
-🚖 *SOLICITAÇÃO DE TRANSFER*
-
-👤 *Nome:* ${data.name}
-📱 *Telefone:* ${data.phone}
-
-📍 *Origem:* ${data.origin}
-🎯 *Destino:* ${data.destination}
-
-📅 *Data:* ${data.date}
-⏰ *Horário:* ${data.time}
-👥 *Passageiros:* ${data.passengers}
-
-${data.message ? `💬 *Observações:* ${data.message}` : ''}
-
-_Aguardo seu orçamento! 😊_
-		`.trim()
-
-		// Simular carregamento por 1 segundo para melhor UX
-		setTimeout(() => {
-			const url = getWhatsAppUrl(message)
-			window.open(url, '_blank')
-			setIsSubmitting(false)
-			reset()
-		}, 1000)
-	}
-
-	const fillRoute = (from: string, to: string) => {
-		setValue('origin', from)
-		setValue('destination', to)
-		
-		// Scroll suave para o formulário para melhor UX
-		const formElement = document.getElementById('contact-form')
-		if (formElement) {
-			formElement.scrollIntoView({ behavior: 'smooth', block: 'center' })
-		}
-	}
 
 	const handleWhatsAppClick = () => {
 		const whatsappNumber = '5573999384732'
@@ -245,23 +173,23 @@ _Aguardo seu orçamento! 😊_
 								pela Costa do Descobrimento. Sua viagem com total comodidade!
 							</p>
 							<div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
-								<Button
-									onClick={() => document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })}
+								<Button 
+									onClick={handleWhatsAppClick}
 									className="gradient-yellow-custom hover:gradient-yellow-custom-hover text-black font-semibold px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg transition-all duration-300 transform hover:scale-105 button-mobile"
 								>
-									<Calendar className="w-5 h-5 mr-3" />
+									<MessageSquare className="w-5 h-5 mr-3" />
 									Solicitar Transfer
 								</Button>
-								<Button
-									onClick={handleWhatsAppClick}
-									className="bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg transition-all duration-300 transform hover:scale-105 button-mobile"
+								<Button 
+									onClick={() => document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })}
+									className="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg transition-all duration-300 transform hover:scale-105 button-mobile"
 								>
-									<MessageSquare className="w-5 h-5 mr-3" />
-									WhatsApp Direto
+									<Calendar className="w-5 h-5 mr-3" />
+									Ver Mais Opções
 								</Button>
 							</div>
 						</div>
-						
+
 						{/* Stats Cards */}
 						<div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mt-8 lg:mt-0">
 							{benefits.map((benefit, index) => (
@@ -318,14 +246,15 @@ _Aguardo seu orçamento! 😊_
 											{route.price}
 										</div>
 									</div>
-									<Button
+									<Button 
 										onClick={() => {
-											fillRoute(route.from, route.to)
-											document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })
+											const message = `🚖 Olá! Gostaria de um orçamento para:\n\n📍 *Origem:* ${route.from}\n🎯 *Destino:* ${route.to}\n\nAguardo seu retorno! 😊`
+											const url = getWhatsAppUrl(message)
+											window.open(url, '_blank')
 										}}
 										className="w-full bg-yellow-custom bg-yellow-custom-hover text-black font-semibold button-mobile"
 									>
-										Solicitar Orçamento
+										Solicitar via WhatsApp
 									</Button>
 								</CardContent>
 							</Card>
@@ -411,222 +340,122 @@ _Aguardo seu orçamento! 😊_
 				</div>
 			</section>
 
-			{/* Contact Form Section */}
-			<section id="contato" className="py-12 sm:py-16 lg:py-20 bg-gray-50">
+			{/* Contact Section - Simplified */}
+			<section id="contato" className="py-16 sm:py-20 bg-gradient-to-br from-gray-50 to-gray-100">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-					<div className="text-center mb-12 sm:mb-16">
-						<h2 className="font-poppins font-bold text-2xl sm:text-3xl md:text-4xl text-gray-900 mb-4">
-							🚖 Solicite: Táxi • Transfer • Passeio • Viagem
+					<div className="text-center mb-12">
+						<h2 className="font-poppins font-bold text-3xl sm:text-4xl lg:text-5xl text-gray-900 mb-6">
+							Fale Conosco Direto no WhatsApp
 						</h2>
-						<p className="text-xl text-gray-600">
-							<span className="font-semibold text-yellow-custom">Serviço 24 horas:</span> Preencha o formulário 
-							e seja redirecionado para o WhatsApp com sua solicitação organizada
+						<p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+							Escolha uma opção abaixo e seja redirecionado direto para o WhatsApp com sua mensagem pré-formatada
 						</p>
 					</div>
 
-					<div className="max-w-4xl mx-auto">
-						<Card className="shadow-xl">
-							<CardHeader className="gradient-yellow-custom text-black">
-								<CardTitle className="text-2xl flex items-center justify-center">
-									<MessageSquare className="w-6 h-6 mr-3" />
-									Formulário de Solicitação
-								</CardTitle>
-								<p className="text-gray-800 text-center font-medium">
-									Táxi 24h • Transfer • Passeios • Viagens - Preencha e seja redirecionado ao WhatsApp
-								</p>
-							</CardHeader>
-							<CardContent className="p-6 sm:p-8 form-mobile">
-								{/* Rotas Populares */}
-								<div className="bg-yellow-custom-50 p-6 rounded-lg mb-8">
-									<h3 className="font-semibold text-gray-800 mb-4 text-center">🚖 Rotas Populares - Táxi/Transfer/Passeio (clique para preencher):</h3>
-									<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3">
-										{popularRoutes.map((route, index) => (
-											<button
-												key={index}
-												type="button"
-												onClick={() => fillRoute(route.from, route.to)}
-												className="text-left text-sm bg-white p-3 rounded border hover:bg-yellow-custom-light hover:border-yellow-custom transition-colors"
-											>
-												{route.from} → {route.to}
-											</button>
-										))}
-									</div>
-								</div>
-
-								<form id="contact-form" onSubmit={handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6">
-									{/* Informações Pessoais */}
-									<div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-										<div>
-											<Label htmlFor="name" className="text-gray-700 font-medium">
-												Nome Completo *
-											</Label>
-											<Input
-												id="name"
-												{...register('name')}
-												className="mt-2"
-												placeholder="Seu nome completo"
-											/>
-											{errors.name && (
-												<p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
-											)}
-										</div>
-
-										<div>
-											<Label htmlFor="phone" className="text-gray-700 font-medium">
-												WhatsApp / Telefone *
-											</Label>
-											<Input
-												id="phone"
-												{...register('phone')}
-												className="mt-2"
-												placeholder="(73) 99938-4732"
-											/>
-											{errors.phone && (
-												<p className="text-red-500 text-sm mt-1">{errors.phone.message}</p>
-											)}
-										</div>
-									</div>
-
-									{/* Origem e Destino */}
-									<div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-										<div>
-											<Label htmlFor="origin" className="text-gray-700 font-medium">
-												Local de Origem *
-											</Label>
-											<Input
-												id="origin"
-												{...register('origin')}
-												className="mt-2"
-												placeholder="Ex: Aeroporto de Porto Seguro"
-											/>
-											{errors.origin && (
-												<p className="text-red-500 text-sm mt-1">{errors.origin.message}</p>
-											)}
-										</div>
-
-										<div>
-											<Label htmlFor="destination" className="text-gray-700 font-medium">
-												Destino *
-											</Label>
-											<Input
-												id="destination"
-												{...register('destination')}
-												className="mt-2"
-												placeholder="Ex: Trancoso"
-											/>
-											{errors.destination && (
-												<p className="text-red-500 text-sm mt-1">{errors.destination.message}</p>
-											)}
-										</div>
-									</div>
-
-									{/* Data e Horário */}
-									<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
-										<div>
-											<Label htmlFor="date" className="text-gray-700 font-medium">
-												Data da Viagem *
-											</Label>
-											<Input
-												id="date"
-												type="date"
-												{...register('date')}
-												className="mt-2"
-											/>
-											{errors.date && (
-												<p className="text-red-500 text-sm mt-1">{errors.date.message}</p>
-											)}
-										</div>
-
-										<div>
-											<Label htmlFor="time" className="text-gray-700 font-medium">
-												Horário *
-											</Label>
-											<Input
-												id="time"
-												type="time"
-												{...register('time')}
-												className="mt-2"
-											/>
-											{errors.time && (
-												<p className="text-red-500 text-sm mt-1">{errors.time.message}</p>
-											)}
-										</div>
-
-										<div>
-											<Label htmlFor="passengers" className="text-gray-700 font-medium">
-												Passageiros *
-											</Label>
-											<select
-												id="passengers"
-												{...register('passengers')}
-												className="mt-2 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
-											>
-												<option value="">Selecione</option>
-												<option value="1">1 passageiro</option>
-												<option value="2">2 passageiros</option>
-												<option value="3">3 passageiros</option>
-												<option value="4">4 passageiros</option>
-												<option value="5">5 passageiros</option>
-												<option value="6">6 passageiros</option>
-												<option value="7+">7 ou mais</option>
-											</select>
-											{errors.passengers && (
-												<p className="text-red-500 text-sm mt-1">{errors.passengers.message}</p>
-											)}
-										</div>
-									</div>
-
-									{/* Observações */}
-									<div>
-										<Label htmlFor="message" className="text-gray-700 font-medium">
-											Observações (opcional)
-										</Label>
-										<Textarea
-											id="message"
-											{...register('message')}
-											className="mt-2"
-											placeholder="Informações adicionais sobre sua viagem..."
-											rows={4}
-										/>
-									</div>
-
-									{/* Botão de Envio */}
+					<div className="max-w-6xl mx-auto space-y-12">
+						{/* Rotas Populares */}
+						<div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8">
+							<h3 className="font-poppins font-bold text-2xl text-gray-900 mb-6 text-center">
+								🚖 Rotas Populares - Clique e Fale Conosco
+							</h3>
+							<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+								{popularRoutes.map((route, index) => (
 									<Button
-										type="submit"
-										disabled={isSubmitting}
-										className="w-full bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 text-white font-semibold py-4 text-lg transition-all duration-300 transform hover:scale-105 button-mobile form-mobile"
+										key={index}
+										onClick={() => {
+											const message = `🚖 Olá! Gostaria de um orçamento para:\n\n📍 *Origem:* ${route.from}\n🎯 *Destino:* ${route.to}\n\nAguardo seu retorno! 😊`
+											const url = getWhatsAppUrl(message)
+											window.open(url, '_blank')
+										}}
+										className="bg-gradient-to-r from-yellow-custom to-yellow-500 hover:from-yellow-600 hover:to-yellow-600 text-black font-medium p-4 h-auto text-left justify-start transition-all duration-300 transform hover:scale-105"
 									>
-										{isSubmitting ? (
-											<>
-												<div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-3"></div>
-												Preparando WhatsApp...
-											</>
-										) : (
-											<>
-												<MessageSquare className="w-5 h-5 mr-3" />
-												Enviar via WhatsApp
-												<ArrowRight className="w-5 h-5 ml-3" />
-											</>
-										)}
-									</Button>
-
-									{/* Aviso */}
-									<div className="bg-yellow-custom-50 border border-yellow-custom rounded-lg p-4">
-										<div className="flex items-start">
-											<CheckCircle className="w-5 h-5 text-yellow-custom mt-0.5 mr-3" />
-											<div>
-												<h4 className="font-semibold text-gray-800">Como funciona:</h4>
-												<p className="text-gray-700 text-sm mt-1">
-													Ao clicar em &quot;Enviar via WhatsApp&quot;, você será redirecionado automaticamente 
-													para o WhatsApp com uma mensagem organizada contendo todos os dados preenchidos. 
-													Basta enviar para receber seu orçamento!
-												</p>
-											</div>
+										<div className="flex flex-col w-full">
+											<span className="text-sm font-semibold">{route.from}</span>
+											<ArrowRight className="w-4 h-4 mx-auto my-1" />
+											<span className="text-sm font-semibold">{route.to}</span>
 										</div>
-									</div>
-								</form>
-							</CardContent>
-						</Card>
+									</Button>
+								))}
+							</div>
+						</div>
+
+						{/* Serviços */}
+						<div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8">
+							<h3 className="font-poppins font-bold text-2xl text-gray-900 mb-6 text-center">
+								🔥 Nossos Serviços - Fale Direto com a Gente
+							</h3>
+							<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+								<Button
+									onClick={() => {
+										const message = `🚖 *TÁXI 24 HORAS*\n\nOlá! Preciso de um táxi urgente.\n\nPor favor, me informe:\n• Disponibilidade\n• Tempo de chegada\n• Valor da corrida\n\nObrigado! 😊`
+										const url = getWhatsAppUrl(message)
+										window.open(url, '_blank')
+									}}
+									className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold p-6 h-auto flex flex-col items-center text-center transition-all duration-300 transform hover:scale-105"
+								>
+									<Clock className="w-8 h-8 mb-3" />
+									<span className="text-lg">Táxi 24 Horas</span>
+									<span className="text-sm mt-1 opacity-90">Disponível agora</span>
+								</Button>
+
+								<Button
+									onClick={() => {
+										const message = `✈️ *TRANSFER AEROPORTO*\n\nOlá! Preciso de transfer para o aeroporto.\n\n📅 *Data:* \n⏰ *Horário:* \n📍 *Local de origem:* \n👥 *Passageiros:* \n🧳 *Bagagens:* \n\nAguardo orçamento! 😊`
+										const url = getWhatsAppUrl(message)
+										window.open(url, '_blank')
+									}}
+									className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold p-6 h-auto flex flex-col items-center text-center transition-all duration-300 transform hover:scale-105"
+								>
+									<Shield className="w-8 h-8 mb-3" />
+									<span className="text-lg">Transfer Aeroporto</span>
+									<span className="text-sm mt-1 opacity-90">Seguro e pontual</span>
+								</Button>
+
+								<Button
+									onClick={() => {
+										const message = `🏖️ *PASSEIOS TURÍSTICOS*\n\nOlá! Gostaria de fazer um passeio turístico.\n\n🎯 *Destinos de interesse:* \n📅 *Data preferencial:* \n👥 *Número de pessoas:* \n⏰ *Duração desejada:* \n\nQuero conhecer essa região linda! 😊`
+										const url = getWhatsAppUrl(message)
+										window.open(url, '_blank')
+									}}
+									className="bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white font-semibold p-6 h-auto flex flex-col items-center text-center transition-all duration-300 transform hover:scale-105"
+								>
+									<Star className="w-8 h-8 mb-3" />
+									<span className="text-lg">Passeios Turísticos</span>
+									<span className="text-sm mt-1 opacity-90">Conheça a região</span>
+								</Button>
+
+								<Button
+									onClick={() => {
+										const message = `🛣️ *VIAGENS PERSONALIZADAS*\n\nOlá! Gostaria de fazer uma viagem personalizada.\n\n📍 *Origem:* \n🎯 *Destino:* \n📅 *Data:* \n👥 *Passageiros:* \n⏰ *Duração da viagem:* \n💼 *Observações:* \n\nQuero uma viagem especial! 😊`
+										const url = getWhatsAppUrl(message)
+										window.open(url, '_blank')
+									}}
+									className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-semibold p-6 h-auto flex flex-col items-center text-center transition-all duration-300 transform hover:scale-105"
+								>
+									<Car className="w-8 h-8 mb-3" />
+									<span className="text-lg">Viagens Especiais</span>
+									<span className="text-sm mt-1 opacity-90">Personalizadas</span>
+								</Button>
+							</div>
+						</div>
+
+						{/* WhatsApp Direto */}
+						<div className="bg-gradient-to-r from-green-500 to-green-600 rounded-2xl shadow-xl p-6 sm:p-8 text-white text-center">
+							<h3 className="font-poppins font-bold text-2xl mb-4">
+								💬 WhatsApp Direto - Fale Conosco Agora
+							</h3>
+							<p className="text-green-100 mb-6 max-w-2xl mx-auto">
+								Prefere falar diretamente? Clique abaixo e seja atendido imediatamente por nossa equipe!
+							</p>
+						<Button 
+							onClick={handleWhatsAppClick}
+								className="bg-white text-green-600 hover:bg-gray-100 font-bold text-lg px-8 py-4 transition-all duration-300 transform hover:scale-105"
+						>
+								<MessageSquare className="w-6 h-6 mr-3" />
+								Conversar Agora no WhatsApp
+								<ArrowRight className="w-6 h-6 ml-3" />
+						</Button>
+						</div>
 					</div>
 				</div>
 			</section>
@@ -639,12 +468,12 @@ _Aguardo seu orçamento! 😊_
 							<Phone className="w-8 h-8 mx-auto mb-4 text-yellow-custom" />
 							<h3 className="font-semibold text-lg mb-2">WhatsApp - Táxi 24h</h3>
 							<p className="text-gray-300 mb-4">{config.contact.phone}</p>
-							<Button
+						<Button 
 								onClick={handleWhatsAppClick}
 								className="bg-green-600 hover:bg-green-700"
-							>
+						>
 								Conversar Agora
-							</Button>
+						</Button>
 						</div>
 						
 						<div>

@@ -14,7 +14,7 @@ export function Header() {
 		{ name: 'Rotas', href: '#rotas' },
 		{ name: 'Serviços', href: '#servicos' },
 		{ name: 'Sobre Nós', href: '#sobre' },
-		{ name: 'Contato', href: '#contato' },
+		{ name: 'WhatsApp', href: '#contato' },
 	]
 
 	const handleNavClick = (href: string) => {
