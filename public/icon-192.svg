@@ -1,1 +1,35 @@
- 
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" width="192" height="192" fill="none">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fdde44;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f1c40f;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2c3e50;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#34495e;stop-opacity:1" />
+    </linearGradient>
+    <filter id="textShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="2" dy="2" stdDeviation="1" flood-color="#000000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Background Circle -->
+  <circle cx="96" cy="96" r="90" fill="url(#bgGradient)" stroke="#e67e22" stroke-width="4"/>
+  
+  <!-- Letter T -->
+  <text x="74.88" y="124.80000000000001" font-family="Arial Black, sans-serif" font-size="76.80000000000001" font-weight="900" 
+        fill="url(#textGradient)" text-anchor="middle" filter="url(#textShadow)">T</text>
+  
+  <!-- Letter G -->
+  <text x="117.12" y="124.80000000000001" font-family="Arial Black, sans-serif" font-size="76.80000000000001" font-weight="900" 
+        fill="url(#textGradient)" text-anchor="middle" filter="url(#textShadow)">G</text>
+  
+  <!-- Small Taxi Icon Above -->
+  <rect x="67.19999999999999" y="38.400000000000006" width="57.599999999999994" height="15.36" rx="3.84" fill="#2c3e50"/>
+  <rect x="71.03999999999999" y="42.24" width="15.36" height="7.68" rx="1.92" fill="#87ceeb" opacity="0.8"/>
+  <rect x="88.32000000000001" y="42.24" width="15.36" height="7.68" rx="1.92" fill="#87ceeb" opacity="0.8"/>
+  <rect x="105.60000000000001" y="42.24" width="15.36" height="7.68" rx="1.92" fill="#87ceeb" opacity="0.8"/>
+  <circle cx="78.72" cy="55.67999999999999" r="3.84" fill="#bdc3c7"/>
+  <circle cx="113.28" cy="55.67999999999999" r="3.84" fill="#bdc3c7"/>
+</svg>

@@ -60,11 +60,38 @@ export default function RootLayout({
 		<html lang="pt-BR">
 			<head>
 				<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+				
+				{/* PWA Configuration */}
 				<link rel="manifest" href="/manifest.json" />
 				<meta name="theme-color" content="#fdde44" />
+				<meta name="msapplication-TileColor" content="#fdde44" />
+				<meta name="msapplication-config" content="/browserconfig.xml" />
+				
+				{/* iOS PWA Configuration */}
 				<meta name="apple-mobile-web-app-capable" content="yes" />
 				<meta name="apple-mobile-web-app-status-bar-style" content="default" />
-				<link rel="apple-touch-icon" href="/icon.svg" />
+				<meta name="apple-mobile-web-app-title" content="Táxi Granjeiro" />
+				
+				{/* Standard Favicon */}
+				<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+				<link rel="icon" type="image/png" sizes="32x32" href="/icon-32.png" />
+				<link rel="icon" type="image/png" sizes="16x16" href="/icon-16.png" />
+				
+				{/* Apple Touch Icons */}
+				<link rel="apple-touch-icon" sizes="180x180" href="/icon-180.png" />
+				<link rel="apple-touch-icon" sizes="152x152" href="/icon-152.png" />
+				<link rel="apple-touch-icon" sizes="144x144" href="/icon-144.png" />
+				<link rel="apple-touch-icon" sizes="120x120" href="/icon-120.png" />
+				<link rel="apple-touch-icon" sizes="114x114" href="/icon-114.png" />
+				<link rel="apple-touch-icon" sizes="76x76" href="/icon-76.png" />
+				<link rel="apple-touch-icon" sizes="72x72" href="/icon-72.png" />
+				<link rel="apple-touch-icon" sizes="60x60" href="/icon-60.png" />
+				<link rel="apple-touch-icon" sizes="57x57" href="/icon-57.png" />
+				
+				{/* Android Chrome Icons */}
+				<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+				<link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
+				
 				<link rel="preconnect" href="https://fonts.googleapis.com" />
 				<link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
 				<link rel="dns-prefetch" href="https://wa.me" />
