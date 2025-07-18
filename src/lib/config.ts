@@ -10,8 +10,8 @@ export const config = {
 
 	// Contato
 	contact: {
-		phone: '(73) 99938-4732',
-		whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '5573999384732',
+			phone: '(11) 95315-6363',
+	whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '5511953156363',
 		email: 'contato@portotaxi.com.br',
 		address: 'Porto Seguro - BA'
 	},

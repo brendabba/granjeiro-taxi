@@ -140,7 +140,7 @@ export default function HomePage() {
 
 
 	const handleWhatsAppClick = () => {
-		const whatsappNumber = '5573999384732'
+		const whatsappNumber = '5511953156363'
 		const message = 'Olá! Gostaria de fazer um orçamento para uma viagem.'
 		const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`
 		window.open(url, '_blank')

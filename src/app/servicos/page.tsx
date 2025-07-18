@@ -123,7 +123,7 @@ export default function ServicosPage() {
 	]
 
 	const handleWhatsAppClick = () => {
-		const whatsappNumber = '5573999384732'
+		const whatsappNumber = '5511953156363'
 		const message = 'Olá! Gostaria de solicitar um orçamento para transfer.'
 		const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`
 		window.open(url, '_blank')
@@ -353,7 +353,7 @@ export default function ServicosPage() {
 							className="bg-green-600 hover:bg-green-700 font-semibold px-8 py-4 text-lg"
 						>
 							<Phone className="w-5 h-5 mr-3" />
-							WhatsApp (73) 99938-4732
+															WhatsApp (11) 95315-6363
 						</Button>
 						<Button 
 							variant="outline"

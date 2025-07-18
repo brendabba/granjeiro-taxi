@@ -126,7 +126,7 @@ export default function SobrePage() {
 	]
 
 	const handleWhatsAppClick = () => {
-		const whatsappNumber = '5573999384732'
+		const whatsappNumber = '5511953156363'
 		const message = 'Olá! Gostaria de conhecer mais sobre a Táxi Granjeiro e solicitar um orçamento.'
 		const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`
 		window.open(url, '_blank')

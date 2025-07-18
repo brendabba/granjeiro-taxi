@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 import { Phone, Mail, MapPin, Clock } from 'lucide-react'
 
@@ -33,32 +35,53 @@ export function Footer() {
 						<h3 className="font-poppins font-semibold text-lg mb-4">Links Rápidos</h3>
 						<ul className="space-y-2">
 							<li>
-								<Link 
-									href="/servicos" 
-									className="text-gray-300 hover:text-orange-400 transition-colors duration-200"
+								<button 
+									onClick={() => {
+										const element = document.getElementById('servicos')
+										if (element) {
+											element.scrollIntoView({ behavior: 'smooth' })
+										} else {
+											window.location.href = '/#servicos'
+										}
+									}}
+									className="text-gray-300 hover:text-orange-400 transition-colors duration-200 text-left"
 								>
 									Nossos Serviços
-								</Link>
+								</button>
 							</li>
 							<li>
-								<Link 
-									href="/rotas" 
-									className="text-gray-300 hover:text-orange-400 transition-colors duration-200"
+								<button 
+									onClick={() => {
+										const element = document.getElementById('rotas')
+										if (element) {
+											element.scrollIntoView({ behavior: 'smooth' })
+										} else {
+											window.location.href = '/#rotas'
+										}
+									}}
+									className="text-gray-300 hover:text-orange-400 transition-colors duration-200 text-left"
 								>
 									Principais Rotas
-								</Link>
+								</button>
 							</li>
 							<li>
-								<Link 
-									href="/sobre" 
-									className="text-gray-300 hover:text-orange-400 transition-colors duration-200"
+								<button 
+									onClick={() => {
+										const element = document.getElementById('sobre')
+										if (element) {
+											element.scrollIntoView({ behavior: 'smooth' })
+										} else {
+											window.location.href = '/#sobre'
+										}
+									}}
+									className="text-gray-300 hover:text-orange-400 transition-colors duration-200 text-left"
 								>
 									Sobre Nós
-								</Link>
+								</button>
 							</li>
 							<li>
 								<a 
-									href="https://wa.me/5573999384732?text=Olá! Gostaria de solicitar um táxi."
+									href="https://wa.me/5511953156363?text=Olá! Gostaria de solicitar um táxi."
 									target="_blank"
 									rel="noopener noreferrer"
 									className="text-gray-300 hover:text-orange-400 transition-colors duration-200"
@@ -68,7 +91,7 @@ export function Footer() {
 							</li>
 							<li>
 								<a 
-									href="https://wa.me/5573999384732?text=Olá! Preciso de um orçamento para transfer."
+									href="https://wa.me/5511953156363?text=Olá! Preciso de um orçamento para transfer."
 									target="_blank"
 									rel="noopener noreferrer"
 									className="text-gray-300 hover:text-orange-400 transition-colors duration-200"
@@ -85,7 +108,7 @@ export function Footer() {
 						<ul className="space-y-2 text-sm">
 							<li>
 								<a 
-									href="https://wa.me/5573999384732?text=Olá! Preciso de transfer para o Aeroporto de Porto Seguro."
+									href="https://wa.me/5511953156363?text=Olá! Preciso de transfer para o Aeroporto de Porto Seguro."
 									target="_blank"
 									rel="noopener noreferrer"
 									className="text-gray-300 hover:text-orange-400 transition-colors duration-200"
@@ -95,7 +118,7 @@ export function Footer() {
 							</li>
 							<li>
 								<a 
-									href="https://wa.me/5573999384732?text=Olá! Preciso de transfer para Trancoso."
+									href="https://wa.me/5511953156363?text=Olá! Preciso de transfer para Trancoso."
 									target="_blank"
 									rel="noopener noreferrer"
 									className="text-gray-300 hover:text-orange-400 transition-colors duration-200"
@@ -105,7 +128,7 @@ export function Footer() {
 							</li>
 							<li>
 								<a 
-									href="https://wa.me/5573999384732?text=Olá! Preciso de transfer para Arraial d'Ajuda."
+									href="https://wa.me/5511953156363?text=Olá! Preciso de transfer para Arraial d'Ajuda."
 									target="_blank"
 									rel="noopener noreferrer"
 									className="text-gray-300 hover:text-orange-400 transition-colors duration-200"
@@ -115,7 +138,7 @@ export function Footer() {
 							</li>
 							<li>
 								<a 
-									href="https://wa.me/5573999384732?text=Olá! Preciso de transfer para Caraíva."
+									href="https://wa.me/5511953156363?text=Olá! Preciso de transfer para Caraíva."
 									target="_blank"
 									rel="noopener noreferrer"
 									className="text-gray-300 hover:text-orange-400 transition-colors duration-200"
@@ -125,7 +148,7 @@ export function Footer() {
 							</li>
 							<li>
 								<a 
-									href="https://wa.me/5573999384732?text=Olá! Preciso de transfer para Coroa Vermelha."
+									href="https://wa.me/5511953156363?text=Olá! Preciso de transfer para Coroa Vermelha."
 									target="_blank"
 									rel="noopener noreferrer"
 									className="text-gray-300 hover:text-orange-400 transition-colors duration-200"
@@ -135,7 +158,7 @@ export function Footer() {
 							</li>
 							<li>
 								<a 
-									href="https://wa.me/5573999384732?text=Olá! Preciso de transfer para o Centro de Porto Seguro."
+									href="https://wa.me/5511953156363?text=Olá! Preciso de transfer para o Centro de Porto Seguro."
 									target="_blank"
 									rel="noopener noreferrer"
 									className="text-gray-300 hover:text-orange-400 transition-colors duration-200"
@@ -153,10 +176,10 @@ export function Footer() {
 							<div className="flex items-center space-x-3">
 								<Phone className="w-4 h-4 text-orange-400" />
 								<a 
-									href="tel:+5573999384732"
+									href="tel:+5511953156363"
 									className="text-gray-300 hover:text-orange-400 transition-colors duration-200"
 								>
-									(73) 99938-4732
+									(11) 95315-6363
 								</a>
 							</div>
 							<div className="flex items-center space-x-3">
