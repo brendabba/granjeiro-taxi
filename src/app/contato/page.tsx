@@ -74,7 +74,7 @@ export default function ContatoPage() {
 						<CardHeader className="bg-gradient-to-r from-orange-600 to-orange-500 text-white">
 							<CardTitle className="text-2xl flex items-center">
 								<Route className="w-6 h-6 mr-3" />
-								🚖 Rotas Populares - Clique e Fale Conosco
+								Rotas Populares - Clique e Fale Conosco
 							</CardTitle>
 							<p className="text-orange-100">
 								Selecione sua rota e fale direto conosco no WhatsApp
@@ -86,7 +86,7 @@ export default function ContatoPage() {
 									<Button
 										key={index}
 										onClick={() => {
-											const message = `🚖 Olá! Gostaria de um orçamento para:\n\n📍 *Origem:* ${route.from}\n🎯 *Destino:* ${route.to}\n\nAguardo seu retorno! 😊`
+											const message = `Olá! Gostaria de um orçamento para:\n\n*Origem:* ${route.from}\n*Destino:* ${route.to}\n\nAguardo seu retorno!`
 											const url = getWhatsAppUrl(message)
 											window.open(url, '_blank')
 										}}
@@ -110,7 +110,7 @@ export default function ContatoPage() {
 						<CardHeader className="bg-gradient-to-r from-blue-600 to-blue-500 text-white">
 							<CardTitle className="text-2xl flex items-center">
 								<Car className="w-6 h-6 mr-3" />
-								🔥 Nossos Serviços - Fale Direto Conosco
+								Nossos Serviços - Fale Direto Conosco
 							</CardTitle>
 							<p className="text-blue-100">
 								Escolha o serviço e seja atendido imediatamente
@@ -120,7 +120,7 @@ export default function ContatoPage() {
 							<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
 								<Button
 									onClick={() => {
-										const message = `🚖 *TÁXI 24 HORAS*\n\nOlá! Preciso de um táxi urgente.\n\nPor favor, me informe:\n• Disponibilidade\n• Tempo de chegada\n• Valor da corrida\n\nObrigado! 😊`
+										const message = `*TÁXI 24 HORAS*\n\nOlá! Preciso de um táxi urgente.\n\nPor favor, me informe:\n• Disponibilidade\n• Tempo de chegada\n• Valor da corrida\n\nObrigado!`
 										const url = getWhatsAppUrl(message)
 										window.open(url, '_blank')
 									}}
@@ -133,7 +133,7 @@ export default function ContatoPage() {
 
 								<Button
 									onClick={() => {
-										const message = `✈️ *TRANSFER AEROPORTO*\n\nOlá! Preciso de transfer para o aeroporto.\n\n📅 *Data:* \n⏰ *Horário:* \n📍 *Local de origem:* \n👥 *Passageiros:* \n🧳 *Bagagens:* \n\nAguardo orçamento! 😊`
+										const message = `*TRANSFER AEROPORTO*\n\nOlá! Preciso de transfer para o aeroporto.\n\n*Data:* \n*Horário:* \n*Local de origem:* \n*Passageiros:* \n*Bagagens:* \n\nAguardo orçamento!`
 										const url = getWhatsAppUrl(message)
 										window.open(url, '_blank')
 									}}
@@ -146,7 +146,7 @@ export default function ContatoPage() {
 
 								<Button
 									onClick={() => {
-										const message = `🏖️ *PASSEIOS TURÍSTICOS*\n\nOlá! Gostaria de conhecer a região.\n\n👥 *Pessoas:* \n📅 *Data preferida:* \n🎯 *Destinos de interesse:* \n• Trancoso\n• Arraial d'Ajuda\n• Caraíva\n• Centro Histórico\n\nAguardo sugestões! 😊`
+										const message = `*PASSEIOS TURÍSTICOS*\n\nOlá! Gostaria de conhecer a região.\n\n*Pessoas:* \n*Data preferida:* \n*Destinos de interesse:* \n• Trancoso\n• Arraial d'Ajuda\n• Caraíva\n• Centro Histórico\n\nAguardo sugestões!`
 										const url = getWhatsAppUrl(message)
 										window.open(url, '_blank')
 									}}
@@ -159,7 +159,7 @@ export default function ContatoPage() {
 
 								<Button
 									onClick={() => {
-										const message = `👥 *VIAGEM EM GRUPO*\n\nOlá! Temos um grupo e precisamos de transporte.\n\n👥 *Quantidade de pessoas:* \n📅 *Data da viagem:* \n📍 *Origem:* \n🎯 *Destino:* \n⏰ *Horário:* \n\nPrecisamos de orçamento! 😊`
+										const message = `*VIAGEM EM GRUPO*\n\nOlá! Temos um grupo e precisamos de transporte.\n\n*Quantidade de pessoas:* \n*Data da viagem:* \n*Origem:* \n*Destino:* \n*Horário:* \n\nPrecisamos de orçamento!`
 										const url = getWhatsAppUrl(message)
 										window.open(url, '_blank')
 									}}
@@ -178,7 +178,7 @@ export default function ContatoPage() {
 				<div className="mb-12">
 					<div className="bg-gradient-to-r from-green-500 to-green-600 rounded-2xl shadow-xl p-8 text-white text-center">
 						<h3 className="font-poppins font-bold text-3xl mb-4">
-							💬 WhatsApp Direto - Fale Conosco Agora
+							WhatsApp Direto - Fale Conosco Agora
 						</h3>
 						<p className="text-green-100 mb-6 max-w-2xl mx-auto text-lg">
 							Prefere falar diretamente? Clique abaixo e seja atendido imediatamente por nossa equipe!

@@ -211,7 +211,7 @@ export default function HomePage() {
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<div className="text-center mb-12 sm:mb-16">
 						<h2 className="font-poppins font-bold text-2xl sm:text-3xl md:text-4xl text-gray-900 mb-4">
-							🚖 Transfer • Táxi • Passeios
+							Transfer • Táxi • Passeios
 						</h2>
 						<p className="text-xl text-gray-600">
 							<span className="font-semibold text-yellow-custom">Táxi 24h</span>, transfers e passeios personalizados 
@@ -248,7 +248,7 @@ export default function HomePage() {
 									</div>
 									<Button 
 										onClick={() => {
-											const message = `🚖 Olá! Gostaria de um orçamento para:\n\n📍 *Origem:* ${route.from}\n🎯 *Destino:* ${route.to}\n\nAguardo seu retorno! 😊`
+											const message = `Olá! Gostaria de um orçamento para:\n\n*Origem:* ${route.from}\n*Destino:* ${route.to}\n\nAguardo seu retorno!`
 											const url = getWhatsAppUrl(message)
 											window.open(url, '_blank')
 										}}
@@ -268,7 +268,7 @@ export default function HomePage() {
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<div className="text-center mb-12 sm:mb-16">
 						<h2 className="font-poppins font-bold text-2xl sm:text-3xl md:text-4xl text-gray-900 mb-4">
-							🌟 Táxi 24h • Transfer • Passeios • Viagens
+							Táxi 24h • Transfer • Passeios • Viagens
 						</h2>
 						<p className="text-xl text-gray-600">
 							<span className="font-bold text-yellow-custom">Serviço completo 24 horas:</span> táxi urbano, 
@@ -304,7 +304,7 @@ export default function HomePage() {
 					<div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
 						<div>
 							<h2 className="font-poppins font-bold text-2xl sm:text-3xl md:text-4xl text-gray-900 mb-6">
-								🚖 Por que escolher a Táxi Granjeiro?
+								Por que escolher a Táxi Granjeiro?
 							</h2>
 							<p className="text-xl text-gray-600 mb-8">
 								<span className="font-bold text-yellow-custom">Táxi 24 horas</span>, empresa local especializada em 
@@ -356,14 +356,14 @@ export default function HomePage() {
 						{/* Rotas Populares */}
 						<div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8">
 							<h3 className="font-poppins font-bold text-2xl text-gray-900 mb-6 text-center">
-								🚖 Rotas Populares - Clique e Fale Conosco
+								Rotas Populares - Clique e Fale Conosco
 							</h3>
 							<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
 								{popularRoutes.map((route, index) => (
 									<Button
 										key={index}
 										onClick={() => {
-											const message = `🚖 Olá! Gostaria de um orçamento para:\n\n📍 *Origem:* ${route.from}\n🎯 *Destino:* ${route.to}\n\nAguardo seu retorno! 😊`
+											const message = `Olá! Gostaria de um orçamento para:\n\n*Origem:* ${route.from}\n*Destino:* ${route.to}\n\nAguardo seu retorno!`
 											const url = getWhatsAppUrl(message)
 											window.open(url, '_blank')
 										}}
@@ -382,12 +382,12 @@ export default function HomePage() {
 						{/* Serviços */}
 						<div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8">
 							<h3 className="font-poppins font-bold text-2xl text-gray-900 mb-6 text-center">
-								🔥 Nossos Serviços - Fale Direto com a Gente
+								Nossos Serviços - Fale Direto com a Gente
 							</h3>
 							<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
 								<Button
 									onClick={() => {
-										const message = `🚖 *TÁXI 24 HORAS*\n\nOlá! Preciso de um táxi urgente.\n\nPor favor, me informe:\n• Disponibilidade\n• Tempo de chegada\n• Valor da corrida\n\nObrigado! 😊`
+										const message = `*TÁXI 24 HORAS*\n\nOlá! Preciso de um táxi urgente.\n\nPor favor, me informe:\n• Disponibilidade\n• Tempo de chegada\n• Valor da corrida\n\nObrigado!`
 										const url = getWhatsAppUrl(message)
 										window.open(url, '_blank')
 									}}
@@ -400,7 +400,7 @@ export default function HomePage() {
 
 								<Button
 									onClick={() => {
-										const message = `✈️ *TRANSFER AEROPORTO*\n\nOlá! Preciso de transfer para o aeroporto.\n\n📅 *Data:* \n⏰ *Horário:* \n📍 *Local de origem:* \n👥 *Passageiros:* \n🧳 *Bagagens:* \n\nAguardo orçamento! 😊`
+										const message = `*TRANSFER AEROPORTO*\n\nOlá! Preciso de transfer para o aeroporto.\n\n*Data:* \n*Horário:* \n*Local de origem:* \n*Passageiros:* \n*Bagagens:* \n\nAguardo orçamento!`
 										const url = getWhatsAppUrl(message)
 										window.open(url, '_blank')
 									}}
@@ -413,7 +413,7 @@ export default function HomePage() {
 
 								<Button
 									onClick={() => {
-										const message = `🏖️ *PASSEIOS TURÍSTICOS*\n\nOlá! Gostaria de fazer um passeio turístico.\n\n🎯 *Destinos de interesse:* \n📅 *Data preferencial:* \n👥 *Número de pessoas:* \n⏰ *Duração desejada:* \n\nQuero conhecer essa região linda! 😊`
+										const message = `*PASSEIOS TURÍSTICOS*\n\nOlá! Gostaria de fazer um passeio turístico.\n\n*Destinos de interesse:* \n*Data preferencial:* \n*Número de pessoas:* \n*Duração desejada:* \n\nQuero conhecer essa região linda!`
 										const url = getWhatsAppUrl(message)
 										window.open(url, '_blank')
 									}}
@@ -426,7 +426,7 @@ export default function HomePage() {
 
 								<Button
 									onClick={() => {
-										const message = `🛣️ *VIAGENS PERSONALIZADAS*\n\nOlá! Gostaria de fazer uma viagem personalizada.\n\n📍 *Origem:* \n🎯 *Destino:* \n📅 *Data:* \n👥 *Passageiros:* \n⏰ *Duração da viagem:* \n💼 *Observações:* \n\nQuero uma viagem especial! 😊`
+										const message = `*VIAGENS PERSONALIZADAS*\n\nOlá! Gostaria de fazer uma viagem personalizada.\n\n*Origem:* \n*Destino:* \n*Data:* \n*Passageiros:* \n*Duração da viagem:* \n*Observações:* \n\nQuero uma viagem especial!`
 										const url = getWhatsAppUrl(message)
 										window.open(url, '_blank')
 									}}
@@ -442,7 +442,7 @@ export default function HomePage() {
 						{/* WhatsApp Direto */}
 						<div className="bg-gradient-to-r from-green-500 to-green-600 rounded-2xl shadow-xl p-6 sm:p-8 text-white text-center">
 							<h3 className="font-poppins font-bold text-2xl mb-4">
-								💬 WhatsApp Direto - Fale Conosco Agora
+								WhatsApp Direto - Fale Conosco Agora
 							</h3>
 							<p className="text-green-100 mb-6 max-w-2xl mx-auto">
 								Prefere falar diretamente? Clique abaixo e seja atendido imediatamente por nossa equipe!
@@ -486,8 +486,8 @@ export default function HomePage() {
 						<div>
 							<Clock className="w-8 h-8 mx-auto mb-4 text-yellow-custom" />
 							<h3 className="font-semibold text-lg mb-2">Funcionamento</h3>
-							<p className="text-gray-300">🚖 Táxi: 24 horas por dia</p>
-							<p className="text-gray-300">📱 WhatsApp: 6h às 22h</p>
+							<p className="text-gray-300">Táxi: 24 horas por dia</p>
+							<p className="text-gray-300">WhatsApp: 6h às 22h</p>
 						</div>
 					</div>
 					
