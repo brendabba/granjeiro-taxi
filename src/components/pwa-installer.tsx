@@ -125,7 +125,12 @@ export function PWAInstaller() {
 
   return (
     <div className="fixed bottom-4 left-4 right-4 z-50 md:left-auto md:right-4 md:w-96">
-      <div className="bg-gradient-to-r from-yellow-custom to-yellow-500 rounded-xl shadow-2xl border-2 border-yellow-600 p-4 animate-slide-up">
+      <div className="bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-xl shadow-2xl border-2 border-yellow-700 p-4 animate-slide-up backdrop-blur-sm"
+           style={{
+             backgroundColor: 'rgba(253, 222, 68, 0.95)',
+             backdropFilter: 'blur(10px)',
+             boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.2)'
+           }}>
         <div className="flex items-start justify-between mb-3">
           <div className="flex items-center">
             <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center mr-3 shadow-md">
