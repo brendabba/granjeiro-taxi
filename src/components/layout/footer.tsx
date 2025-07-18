@@ -19,7 +19,7 @@ export function Footer() {
 							</span>
 						</div>
 						<p className="text-gray-300 text-sm mb-4">
-							Transfer seguro e pontual em Porto Seguro, Trancoso, Arraial d'Ajuda e Caraíva. 
+							Transfer seguro e pontual em Porto Seguro, Trancoso, Arraial d&apos;Ajuda e Caraíva. 
 							Sua viagem com conforto e segurança.
 						</p>
 						<div className="flex items-center space-x-2 text-sm text-gray-300">
@@ -57,12 +57,24 @@ export function Footer() {
 								</Link>
 							</li>
 							<li>
-								<Link 
-									href="/contato" 
+								<a 
+									href="https://wa.me/5573999384732?text=Olá! Gostaria de solicitar um táxi."
+									target="_blank"
+									rel="noopener noreferrer"
 									className="text-gray-300 hover:text-orange-400 transition-colors duration-200"
 								>
-									Contato
-								</Link>
+									Solicitar Táxi
+								</a>
+							</li>
+							<li>
+								<a 
+									href="https://wa.me/5573999384732?text=Olá! Preciso de um orçamento para transfer."
+									target="_blank"
+									rel="noopener noreferrer"
+									className="text-gray-300 hover:text-orange-400 transition-colors duration-200"
+								>
+									Orçamento Transfer
+								</a>
 							</li>
 						</ul>
 					</div>
@@ -70,13 +82,67 @@ export function Footer() {
 					{/* Destinos */}
 					<div>
 						<h3 className="font-poppins font-semibold text-lg mb-4">Principais Destinos</h3>
-						<ul className="space-y-2 text-sm text-gray-300">
-							<li>• Aeroporto de Porto Seguro</li>
-							<li>• Trancoso</li>
-							                <li>• Arraial d'Ajuda</li>
-							<li>• Caraíva</li>
-							<li>• Coroa Vermelha</li>
-							<li>• Centro de Porto Seguro</li>
+						<ul className="space-y-2 text-sm">
+							<li>
+								<a 
+									href="https://wa.me/5573999384732?text=Olá! Preciso de transfer para o Aeroporto de Porto Seguro."
+									target="_blank"
+									rel="noopener noreferrer"
+									className="text-gray-300 hover:text-orange-400 transition-colors duration-200"
+								>
+									• Aeroporto de Porto Seguro
+								</a>
+							</li>
+							<li>
+								<a 
+									href="https://wa.me/5573999384732?text=Olá! Preciso de transfer para Trancoso."
+									target="_blank"
+									rel="noopener noreferrer"
+									className="text-gray-300 hover:text-orange-400 transition-colors duration-200"
+								>
+									• Trancoso
+								</a>
+							</li>
+							<li>
+								<a 
+									href="https://wa.me/5573999384732?text=Olá! Preciso de transfer para Arraial d'Ajuda."
+									target="_blank"
+									rel="noopener noreferrer"
+									className="text-gray-300 hover:text-orange-400 transition-colors duration-200"
+								>
+									• Arraial d&apos;Ajuda
+								</a>
+							</li>
+							<li>
+								<a 
+									href="https://wa.me/5573999384732?text=Olá! Preciso de transfer para Caraíva."
+									target="_blank"
+									rel="noopener noreferrer"
+									className="text-gray-300 hover:text-orange-400 transition-colors duration-200"
+								>
+									• Caraíva
+								</a>
+							</li>
+							<li>
+								<a 
+									href="https://wa.me/5573999384732?text=Olá! Preciso de transfer para Coroa Vermelha."
+									target="_blank"
+									rel="noopener noreferrer"
+									className="text-gray-300 hover:text-orange-400 transition-colors duration-200"
+								>
+									• Coroa Vermelha
+								</a>
+							</li>
+							<li>
+								<a 
+									href="https://wa.me/5573999384732?text=Olá! Preciso de transfer para o Centro de Porto Seguro."
+									target="_blank"
+									rel="noopener noreferrer"
+									className="text-gray-300 hover:text-orange-400 transition-colors duration-200"
+								>
+									• Centro de Porto Seguro
+								</a>
+							</li>
 						</ul>
 					</div>
 
