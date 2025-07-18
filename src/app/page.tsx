@@ -22,7 +22,8 @@ import {
 	Wifi,
 	CreditCard,
 	HeadphonesIcon,
-	Compass
+	Compass,
+	Route
 } from 'lucide-react'
 
 export default function HomePage() {
@@ -378,8 +379,8 @@ export default function HomePage() {
 									</Button>
 								))}
 							</div>
-							{/* Desktop/Tablet Layout - Grid */}
-							<div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+							{/* Desktop/Tablet Layout - Grid Modernizado */}
+							<div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
 								{popularRoutes.map((route, index) => (
 									<Button
 										key={index}
@@ -388,12 +389,20 @@ export default function HomePage() {
 											const url = getWhatsAppUrl(message)
 											window.open(url, '_blank')
 										}}
-										className="bg-gradient-to-r from-yellow-custom to-yellow-500 hover:from-yellow-600 hover:to-yellow-600 text-black font-medium p-4 h-auto text-left justify-start transition-all duration-300 transform hover:scale-105"
+										className="group relative bg-white border-2 border-yellow-300 hover:border-yellow-500 text-black font-medium p-6 h-auto rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:bg-gradient-to-br hover:from-yellow-50 hover:to-yellow-100"
 									>
-										<div className="flex flex-col w-full">
-											<span className="text-sm font-semibold">{route.from}</span>
-											<ArrowRight className="w-4 h-4 mx-auto my-1" />
-											<span className="text-sm font-semibold">{route.to}</span>
+										<div className="flex flex-col items-center text-center space-y-3">
+											<div className="flex items-center justify-center w-12 h-12 bg-yellow-custom rounded-full group-hover:bg-yellow-500 transition-colors duration-300">
+												<Route className="w-6 h-6 text-black" />
+											</div>
+											<div className="space-y-2">
+												<div className="text-sm font-bold text-gray-800">{route.from}</div>
+												<div className="flex items-center justify-center">
+													<ArrowRight className="w-5 h-5 text-yellow-600 group-hover:translate-x-1 transition-transform duration-300" />
+												</div>
+												<div className="text-sm font-bold text-gray-800">{route.to}</div>
+											</div>
+											<div className="text-xs text-gray-500 font-medium">Clique para orçamento</div>
 										</div>
 									</Button>
 								))}
@@ -463,19 +472,27 @@ export default function HomePage() {
 									</div>
 								</Button>
 							</div>
-							{/* Desktop/Tablet Layout - Grid */}
-							<div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+							{/* Desktop/Tablet Layout - Grid Modernizado */}
+							<div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
 								<Button
 									onClick={() => {
 										const message = `*TÁXI 24 HORAS*\n\nOlá! Preciso de um táxi urgente.\n\nPor favor, me informe:\n• Disponibilidade\n• Tempo de chegada\n• Valor da corrida\n\nObrigado!`
 										const url = getWhatsAppUrl(message)
 										window.open(url, '_blank')
 									}}
-									className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold p-6 h-auto flex flex-col items-center text-center transition-all duration-300 transform hover:scale-105"
+									className="group relative bg-white border-2 border-blue-200 hover:border-blue-400 text-blue-700 font-semibold p-6 h-auto rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:bg-gradient-to-br hover:from-blue-50 hover:to-blue-100"
 								>
-									<Clock className="w-8 h-8 mb-3" />
-									<span className="text-lg">Táxi 24 Horas</span>
-									<span className="text-sm mt-1 opacity-90">Disponível agora</span>
+									<div className="flex flex-col items-center text-center space-y-4">
+										<div className="flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full group-hover:bg-blue-200 transition-colors duration-300">
+											<Clock className="w-8 h-8 text-blue-600" />
+										</div>
+										<div className="space-y-2">
+											<h4 className="text-lg font-bold text-blue-800">Táxi 24 Horas</h4>
+											<p className="text-sm text-blue-600">Disponível agora</p>
+											<div className="w-12 h-1 bg-blue-300 rounded mx-auto group-hover:bg-blue-500 transition-colors duration-300"></div>
+										</div>
+										<p className="text-xs text-gray-500 font-medium">Clique para solicitar</p>
+									</div>
 								</Button>
 
 								<Button
@@ -484,11 +501,19 @@ export default function HomePage() {
 										const url = getWhatsAppUrl(message)
 										window.open(url, '_blank')
 									}}
-									className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold p-6 h-auto flex flex-col items-center text-center transition-all duration-300 transform hover:scale-105"
+									className="group relative bg-white border-2 border-green-200 hover:border-green-400 text-green-700 font-semibold p-6 h-auto rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:bg-gradient-to-br hover:from-green-50 hover:to-green-100"
 								>
-									<Shield className="w-8 h-8 mb-3" />
-									<span className="text-lg">Transfer Aeroporto</span>
-									<span className="text-sm mt-1 opacity-90">Seguro e pontual</span>
+									<div className="flex flex-col items-center text-center space-y-4">
+										<div className="flex items-center justify-center w-16 h-16 bg-green-100 rounded-full group-hover:bg-green-200 transition-colors duration-300">
+											<Shield className="w-8 h-8 text-green-600" />
+										</div>
+										<div className="space-y-2">
+											<h4 className="text-lg font-bold text-green-800">Transfer Aeroporto</h4>
+											<p className="text-sm text-green-600">Seguro e pontual</p>
+											<div className="w-12 h-1 bg-green-300 rounded mx-auto group-hover:bg-green-500 transition-colors duration-300"></div>
+										</div>
+										<p className="text-xs text-gray-500 font-medium">Clique para solicitar</p>
+									</div>
 								</Button>
 
 								<Button
@@ -497,11 +522,19 @@ export default function HomePage() {
 										const url = getWhatsAppUrl(message)
 										window.open(url, '_blank')
 									}}
-									className="bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white font-semibold p-6 h-auto flex flex-col items-center text-center transition-all duration-300 transform hover:scale-105"
+									className="group relative bg-white border-2 border-purple-200 hover:border-purple-400 text-purple-700 font-semibold p-6 h-auto rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:bg-gradient-to-br hover:from-purple-50 hover:to-purple-100"
 								>
-									<Compass className="w-8 h-8 mb-3" />
-									<span className="text-lg">Passeios Turísticos</span>
-									<span className="text-sm mt-1 opacity-90">Conheça a região</span>
+									<div className="flex flex-col items-center text-center space-y-4">
+										<div className="flex items-center justify-center w-16 h-16 bg-purple-100 rounded-full group-hover:bg-purple-200 transition-colors duration-300">
+											<Compass className="w-8 h-8 text-purple-600" />
+										</div>
+										<div className="space-y-2">
+											<h4 className="text-lg font-bold text-purple-800">Passeios Turísticos</h4>
+											<p className="text-sm text-purple-600">Conheça a região</p>
+											<div className="w-12 h-1 bg-purple-300 rounded mx-auto group-hover:bg-purple-500 transition-colors duration-300"></div>
+										</div>
+										<p className="text-xs text-gray-500 font-medium">Clique para solicitar</p>
+									</div>
 								</Button>
 
 								<Button
@@ -510,11 +543,19 @@ export default function HomePage() {
 										const url = getWhatsAppUrl(message)
 										window.open(url, '_blank')
 									}}
-									className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-semibold p-6 h-auto flex flex-col items-center text-center transition-all duration-300 transform hover:scale-105"
+									className="group relative bg-white border-2 border-red-200 hover:border-red-400 text-red-700 font-semibold p-6 h-auto rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:bg-gradient-to-br hover:from-red-50 hover:to-red-100"
 								>
-									<Car className="w-8 h-8 mb-3" />
-									<span className="text-lg">Viagens Especiais</span>
-									<span className="text-sm mt-1 opacity-90">Personalizadas</span>
+									<div className="flex flex-col items-center text-center space-y-4">
+										<div className="flex items-center justify-center w-16 h-16 bg-red-100 rounded-full group-hover:bg-red-200 transition-colors duration-300">
+											<Car className="w-8 h-8 text-red-600" />
+										</div>
+										<div className="space-y-2">
+											<h4 className="text-lg font-bold text-red-800">Viagens Especiais</h4>
+											<p className="text-sm text-red-600">Personalizadas</p>
+											<div className="w-12 h-1 bg-red-300 rounded mx-auto group-hover:bg-red-500 transition-colors duration-300"></div>
+										</div>
+										<p className="text-xs text-gray-500 font-medium">Clique para solicitar</p>
+									</div>
 								</Button>
 							</div>
 						</div>
