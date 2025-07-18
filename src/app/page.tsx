@@ -21,7 +21,8 @@ import {
 	Zap,
 	Wifi,
 	CreditCard,
-	HeadphonesIcon
+	HeadphonesIcon,
+	Compass
 } from 'lucide-react'
 
 export default function HomePage() {
@@ -354,11 +355,37 @@ export default function HomePage() {
 
 					<div className="max-w-6xl mx-auto space-y-12">
 						{/* Rotas Populares */}
-						<div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8">
-							<h3 className="font-poppins font-bold text-2xl text-gray-900 mb-6 text-center">
+						<div className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 lg:p-8">
+							<h3 className="font-poppins font-bold text-lg sm:text-2xl text-gray-900 mb-4 sm:mb-6 text-center">
 								Rotas Populares - Clique e Fale Conosco
 							</h3>
-							<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+							{/* Mobile Layout - Stack vertical */}
+							<div className="block sm:hidden space-y-3">
+								{popularRoutes.map((route, index) => (
+									<Button
+										key={index}
+										onClick={() => {
+											const message = `Olá! Gostaria de um orçamento para:\n\n*Origem:* ${route.from}\n*Destino:* ${route.to}\n\nAguardo seu retorno!`
+											const url = getWhatsAppUrl(message)
+											window.open(url, '_blank')
+										}}
+										className="w-full bg-yellow-custom hover:bg-yellow-500 text-black font-medium py-4 px-4 rounded-lg text-left transition-colors duration-200"
+									>
+										<div className="flex items-center justify-between">
+											<div className="flex-1">
+												<div className="text-sm font-semibold">{route.from}</div>
+												<div className="flex items-center text-xs text-gray-600 mt-1">
+													<ArrowRight className="w-3 h-3 mr-1" />
+													<span>{route.to}</span>
+												</div>
+											</div>
+											<MessageSquare className="w-5 h-5 text-gray-600" />
+										</div>
+									</Button>
+								))}
+							</div>
+							{/* Desktop/Tablet Layout - Grid */}
+							<div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
 								{popularRoutes.map((route, index) => (
 									<Button
 										key={index}
@@ -380,11 +407,82 @@ export default function HomePage() {
 						</div>
 
 						{/* Serviços */}
-						<div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8">
-							<h3 className="font-poppins font-bold text-2xl text-gray-900 mb-6 text-center">
+						<div className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 lg:p-8">
+							<h3 className="font-poppins font-bold text-lg sm:text-2xl text-gray-900 mb-4 sm:mb-6 text-center">
 								Nossos Serviços - Fale Direto com a Gente
 							</h3>
-							<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+							{/* Mobile Layout - Stack vertical */}
+							<div className="block sm:hidden space-y-3">
+								<Button
+									onClick={() => {
+										const message = `*TÁXI 24 HORAS*\n\nOlá! Preciso de um táxi urgente.\n\nPor favor, me informe:\n• Disponibilidade\n• Tempo de chegada\n• Valor da corrida\n\nObrigado!`
+										const url = getWhatsAppUrl(message)
+										window.open(url, '_blank')
+									}}
+									className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-4 px-4 rounded-lg transition-colors duration-200"
+								>
+									<div className="flex items-center">
+										<Clock className="w-6 h-6 mr-3 flex-shrink-0" />
+										<div className="text-left">
+											<div className="font-semibold">Táxi 24 Horas</div>
+											<div className="text-sm opacity-90">Disponível agora</div>
+										</div>
+									</div>
+								</Button>
+
+								<Button
+									onClick={() => {
+										const message = `*TRANSFER AEROPORTO*\n\nOlá! Preciso de transfer para o aeroporto.\n\n*Data:* \n*Horário:* \n*Local de origem:* \n*Passageiros:* \n*Bagagens:* \n\nAguardo orçamento!`
+										const url = getWhatsAppUrl(message)
+										window.open(url, '_blank')
+									}}
+									className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-4 px-4 rounded-lg transition-colors duration-200"
+								>
+									<div className="flex items-center">
+										<Shield className="w-6 h-6 mr-3 flex-shrink-0" />
+										<div className="text-left">
+											<div className="font-semibold">Transfer Aeroporto</div>
+											<div className="text-sm opacity-90">Seguro e pontual</div>
+										</div>
+									</div>
+								</Button>
+
+								<Button
+									onClick={() => {
+										const message = `*PASSEIOS TURÍSTICOS*\n\nOlá! Gostaria de fazer um passeio turístico.\n\n*Destinos de interesse:* \n*Data preferencial:* \n*Número de pessoas:* \n*Duração desejada:* \n\nQuero conhecer essa região linda!`
+										const url = getWhatsAppUrl(message)
+										window.open(url, '_blank')
+									}}
+									className="w-full bg-purple-500 hover:bg-purple-600 text-white font-medium py-4 px-4 rounded-lg transition-colors duration-200"
+								>
+									<div className="flex items-center">
+										<Compass className="w-6 h-6 mr-3 flex-shrink-0" />
+										<div className="text-left">
+											<div className="font-semibold">Passeios Turísticos</div>
+											<div className="text-sm opacity-90">Conheça a região</div>
+										</div>
+									</div>
+								</Button>
+
+								<Button
+									onClick={() => {
+										const message = `*VIAGENS PERSONALIZADAS*\n\nOlá! Gostaria de fazer uma viagem personalizada.\n\n*Origem:* \n*Destino:* \n*Data:* \n*Passageiros:* \n*Duração da viagem:* \n*Observações:* \n\nQuero uma viagem especial!`
+										const url = getWhatsAppUrl(message)
+										window.open(url, '_blank')
+									}}
+									className="w-full bg-red-500 hover:bg-red-600 text-white font-medium py-4 px-4 rounded-lg transition-colors duration-200"
+								>
+									<div className="flex items-center">
+										<Car className="w-6 h-6 mr-3 flex-shrink-0" />
+										<div className="text-left">
+											<div className="font-semibold">Viagens Especiais</div>
+											<div className="text-sm opacity-90">Personalizadas</div>
+										</div>
+									</div>
+								</Button>
+							</div>
+							{/* Desktop/Tablet Layout - Grid */}
+							<div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
 								<Button
 									onClick={() => {
 										const message = `*TÁXI 24 HORAS*\n\nOlá! Preciso de um táxi urgente.\n\nPor favor, me informe:\n• Disponibilidade\n• Tempo de chegada\n• Valor da corrida\n\nObrigado!`
@@ -419,7 +517,7 @@ export default function HomePage() {
 									}}
 									className="bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white font-semibold p-6 h-auto flex flex-col items-center text-center transition-all duration-300 transform hover:scale-105"
 								>
-									<Star className="w-8 h-8 mb-3" />
+									<Compass className="w-8 h-8 mb-3" />
 									<span className="text-lg">Passeios Turísticos</span>
 									<span className="text-sm mt-1 opacity-90">Conheça a região</span>
 								</Button>
