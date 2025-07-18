@@ -359,8 +359,8 @@ export default function HomePage() {
 							<h3 className="font-poppins font-bold text-lg sm:text-2xl text-gray-900 mb-4 sm:mb-6 text-center">
 								Rotas Populares - Clique e Fale Conosco
 							</h3>
-							{/* Mobile Layout - Stack vertical */}
-							<div className="block sm:hidden space-y-3">
+							{/* Mobile Layout - Stack vertical simples */}
+							<div className="block sm:hidden space-y-2">
 								{popularRoutes.map((route, index) => (
 									<Button
 										key={index}
@@ -369,17 +369,11 @@ export default function HomePage() {
 											const url = getWhatsAppUrl(message)
 											window.open(url, '_blank')
 										}}
-										className="w-full bg-yellow-custom hover:bg-yellow-500 text-black font-medium py-4 px-4 rounded-lg text-left transition-colors duration-200"
+										className="w-full bg-yellow-custom hover:bg-yellow-500 text-black font-medium py-3 px-3 rounded-lg transition-colors duration-200"
 									>
-										<div className="flex items-center justify-between">
-											<div className="flex-1">
-												<div className="text-sm font-semibold">{route.from}</div>
-												<div className="flex items-center text-xs text-gray-600 mt-1">
-													<ArrowRight className="w-3 h-3 mr-1" />
-													<span>{route.to}</span>
-												</div>
-											</div>
-											<MessageSquare className="w-5 h-5 text-gray-600" />
+										<div className="text-sm">
+											<div className="font-semibold">{route.from}</div>
+											<div className="text-xs text-gray-700 mt-1">para {route.to}</div>
 										</div>
 									</Button>
 								))}
@@ -411,22 +405,19 @@ export default function HomePage() {
 							<h3 className="font-poppins font-bold text-lg sm:text-2xl text-gray-900 mb-4 sm:mb-6 text-center">
 								Nossos Serviços - Fale Direto com a Gente
 							</h3>
-							{/* Mobile Layout - Stack vertical */}
-							<div className="block sm:hidden space-y-3">
+							{/* Mobile Layout - Stack vertical simples */}
+							<div className="block sm:hidden space-y-2">
 								<Button
 									onClick={() => {
 										const message = `*TÁXI 24 HORAS*\n\nOlá! Preciso de um táxi urgente.\n\nPor favor, me informe:\n• Disponibilidade\n• Tempo de chegada\n• Valor da corrida\n\nObrigado!`
 										const url = getWhatsAppUrl(message)
 										window.open(url, '_blank')
 									}}
-									className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-4 px-4 rounded-lg transition-colors duration-200"
+									className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-3 rounded-lg transition-colors duration-200"
 								>
-									<div className="flex items-center">
-										<Clock className="w-6 h-6 mr-3 flex-shrink-0" />
-										<div className="text-left">
-											<div className="font-semibold">Táxi 24 Horas</div>
-											<div className="text-sm opacity-90">Disponível agora</div>
-										</div>
+									<div className="text-sm">
+										<div className="font-semibold">Táxi 24 Horas</div>
+										<div className="text-xs opacity-90 mt-1">Disponível agora</div>
 									</div>
 								</Button>
 
@@ -436,14 +427,11 @@ export default function HomePage() {
 										const url = getWhatsAppUrl(message)
 										window.open(url, '_blank')
 									}}
-									className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-4 px-4 rounded-lg transition-colors duration-200"
+									className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-3 px-3 rounded-lg transition-colors duration-200"
 								>
-									<div className="flex items-center">
-										<Shield className="w-6 h-6 mr-3 flex-shrink-0" />
-										<div className="text-left">
-											<div className="font-semibold">Transfer Aeroporto</div>
-											<div className="text-sm opacity-90">Seguro e pontual</div>
-										</div>
+									<div className="text-sm">
+										<div className="font-semibold">Transfer Aeroporto</div>
+										<div className="text-xs opacity-90 mt-1">Seguro e pontual</div>
 									</div>
 								</Button>
 
@@ -453,14 +441,11 @@ export default function HomePage() {
 										const url = getWhatsAppUrl(message)
 										window.open(url, '_blank')
 									}}
-									className="w-full bg-purple-500 hover:bg-purple-600 text-white font-medium py-4 px-4 rounded-lg transition-colors duration-200"
+									className="w-full bg-purple-500 hover:bg-purple-600 text-white font-medium py-3 px-3 rounded-lg transition-colors duration-200"
 								>
-									<div className="flex items-center">
-										<Compass className="w-6 h-6 mr-3 flex-shrink-0" />
-										<div className="text-left">
-											<div className="font-semibold">Passeios Turísticos</div>
-											<div className="text-sm opacity-90">Conheça a região</div>
-										</div>
+									<div className="text-sm">
+										<div className="font-semibold">Passeios Turísticos</div>
+										<div className="text-xs opacity-90 mt-1">Conheça a região</div>
 									</div>
 								</Button>
 
@@ -470,14 +455,11 @@ export default function HomePage() {
 										const url = getWhatsAppUrl(message)
 										window.open(url, '_blank')
 									}}
-									className="w-full bg-red-500 hover:bg-red-600 text-white font-medium py-4 px-4 rounded-lg transition-colors duration-200"
+									className="w-full bg-red-500 hover:bg-red-600 text-white font-medium py-3 px-3 rounded-lg transition-colors duration-200"
 								>
-									<div className="flex items-center">
-										<Car className="w-6 h-6 mr-3 flex-shrink-0" />
-										<div className="text-left">
-											<div className="font-semibold">Viagens Especiais</div>
-											<div className="text-sm opacity-90">Personalizadas</div>
-										</div>
+									<div className="text-sm">
+										<div className="font-semibold">Viagens Especiais</div>
+										<div className="text-xs opacity-90 mt-1">Personalizadas</div>
 									</div>
 								</Button>
 							</div>
@@ -538,21 +520,29 @@ export default function HomePage() {
 						</div>
 
 						{/* WhatsApp Direto */}
-						<div className="bg-gradient-to-r from-green-500 to-green-600 rounded-2xl shadow-xl p-6 sm:p-8 text-white text-center">
-							<h3 className="font-poppins font-bold text-2xl mb-4">
-								WhatsApp Direto - Fale Conosco Agora
+						<div className="bg-gradient-to-r from-green-500 to-green-600 rounded-2xl shadow-xl p-4 sm:p-6 lg:p-8 text-white text-center">
+							<h3 className="font-poppins font-bold text-lg sm:text-2xl mb-3 sm:mb-4">
+								WhatsApp Direto
 							</h3>
-							<p className="text-green-100 mb-6 max-w-2xl mx-auto">
-								Prefere falar diretamente? Clique abaixo e seja atendido imediatamente por nossa equipe!
+							<p className="text-green-100 mb-4 sm:mb-6 text-sm sm:text-base max-w-2xl mx-auto">
+								Fale diretamente com nossa equipe agora!
 							</p>
-						<Button 
-							onClick={handleWhatsAppClick}
-								className="bg-white text-green-600 hover:bg-gray-100 font-bold text-lg px-8 py-4 transition-all duration-300 transform hover:scale-105"
-						>
+							{/* Mobile Button */}
+							<Button 
+								onClick={handleWhatsAppClick}
+								className="block sm:hidden w-full bg-white text-green-600 hover:bg-gray-100 font-bold py-3 px-4 rounded-lg transition-colors duration-200"
+							>
+								WhatsApp
+							</Button>
+							{/* Desktop Button */}
+							<Button 
+								onClick={handleWhatsAppClick}
+								className="hidden sm:inline-flex bg-white text-green-600 hover:bg-gray-100 font-bold text-lg px-8 py-4 transition-all duration-300 transform hover:scale-105"
+							>
 								<MessageSquare className="w-6 h-6 mr-3" />
 								Conversar Agora no WhatsApp
 								<ArrowRight className="w-6 h-6 ml-3" />
-						</Button>
+							</Button>
 						</div>
 					</div>
 				</div>
