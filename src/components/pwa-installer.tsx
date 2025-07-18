@@ -167,40 +167,82 @@ export function PWAInstaller() {
         {/* Instruções específicas por plataforma */}
         {isIOS ? (
           <div className="space-y-3">
-                         <p className="text-xs text-gray-800 bg-black/10 rounded-lg p-2">
-               📱 <strong>iPhone/iPad:</strong><br />
-               1. Toque no botão <strong>Compartilhar</strong> ⬆️<br />
-               2. Role para baixo<br />
-               3. Toque <strong>&quot;Adicionar à Tela Inicial&quot;</strong>
-             </p>
+            <div className="text-xs text-gray-800 bg-black/10 rounded-lg p-3 space-y-2">
+              <div className="font-semibold text-black mb-2">📱 Como instalar no iPhone/iPad:</div>
+              
+              <div className="bg-white/50 rounded p-2 mb-2">
+                <strong>🌐 Primeiro: Use o Safari</strong><br />
+                Este aplicativo só funciona no navegador Safari (não no Chrome ou outros)
+              </div>
+              
+              <div className="space-y-1">
+                <div><strong>1.</strong> Na parte inferior da tela, toque no botão <strong>Compartilhar</strong> ⬆️</div>
+                <div><strong>2.</strong> Role a lista para baixo até encontrar:</div>
+                                 <div className="ml-4 bg-blue-100/50 rounded px-2 py-1">
+                   📱 <strong>&quot;Adicionar à Tela Inicial&quot;</strong>
+                 </div>
+                 <div><strong>3.</strong> Toque nesta opção</div>
+                 <div><strong>4.</strong> Confirme tocando em <strong>&quot;Adicionar&quot;</strong></div>
+              </div>
+              
+              <div className="mt-2 text-xs text-gray-700 bg-green-100/50 rounded p-2">
+                ✅ <strong>Pronto!</strong> O app aparecerá na sua tela inicial com acesso direto e funcionará offline
+              </div>
+            </div>
             <Button
               onClick={handleClosePrompt}
               className="w-full bg-white text-black hover:bg-gray-100 font-semibold"
             >
-              Entendi!
+              Perfeito, entendi!
             </Button>
           </div>
         ) : (
           <div className="space-y-3">
             {deferredPrompt ? (
-              <Button
-                onClick={handleInstallClick}
-                className="w-full bg-white text-black hover:bg-gray-100 font-semibold flex items-center justify-center"
-              >
-                <Download className="w-4 h-4 mr-2" />
-                Instalar App
-              </Button>
+              <div className="space-y-3">
+                <div className="text-xs text-gray-800 bg-black/10 rounded-lg p-3">
+                  <div className="font-semibold text-black mb-2">📱 Instalação Automática Disponível:</div>
+                  <div>O navegador detectou que este é um app instalável. Clique no botão abaixo para instalar diretamente!</div>
+                </div>
+                <Button
+                  onClick={handleInstallClick}
+                  className="w-full bg-white text-black hover:bg-gray-100 font-semibold flex items-center justify-center"
+                >
+                  <Download className="w-4 h-4 mr-2" />
+                  Instalar App Agora
+                </Button>
+              </div>
             ) : (
-              <div className="space-y-2">
-                                 <p className="text-xs text-gray-800 bg-black/10 rounded-lg p-2">
-                   📱 <strong>Android:</strong><br />
-                   Menu (⋮) → &quot;Instalar app&quot; ou &quot;Adicionar à tela inicial&quot;
-                 </p>
+              <div className="space-y-3">
+                <div className="text-xs text-gray-800 bg-black/10 rounded-lg p-3 space-y-2">
+                  <div className="font-semibold text-black mb-2">📱 Como instalar no Android:</div>
+                  
+                  <div className="bg-white/50 rounded p-2 mb-2">
+                    <strong>🌐 No navegador Chrome ou Edge</strong><br />
+                    Funciona melhor no Chrome, mas também no Firefox e Edge
+                  </div>
+                  
+                  <div className="space-y-1">
+                    <div><strong>1.</strong> Toque no menu do navegador <strong>(⋮)</strong> no canto superior direito</div>
+                    <div><strong>2.</strong> Procure por uma destas opções:</div>
+                    <div className="ml-4 space-y-1">
+                      <div className="bg-blue-100/50 rounded px-2 py-1">📱 &quot;Instalar app&quot;</div>
+                      <div className="bg-blue-100/50 rounded px-2 py-1">📱 &quot;Adicionar à tela inicial&quot;</div>
+                      <div className="bg-blue-100/50 rounded px-2 py-1">📱 &quot;Criar atalho&quot;</div>
+                    </div>
+                    <div><strong>3.</strong> Toque na opção disponível</div>
+                    <div><strong>4.</strong> Confirme a instalação</div>
+                  </div>
+                  
+                  <div className="mt-2 text-xs text-gray-700 bg-green-100/50 rounded p-2">
+                    ✅ <strong>Pronto!</strong> O app aparecerá entre seus aplicativos e funcionará offline
+                  </div>
+                </div>
                 <Button
                   onClick={handleClosePrompt}
                   className="w-full bg-white text-black hover:bg-gray-100 font-semibold"
                 >
-                  Entendi!
+                  Perfeito, entendi!
                 </Button>
               </div>
             )}
